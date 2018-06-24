@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoListItem } from '../todo-list-item.model';
 
 @Component({
@@ -8,10 +8,31 @@ import { TodoListItem } from '../todo-list-item.model';
 })
 export class TodoListItemComponent implements OnInit {
   @Input() public todoItem: TodoListItem;
+  @Output() getItemId: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+    console.log('ngOnInit');
   }
+
+  getId(event, id) {
+    this.getItemId.emit(id);
+    console.log(id);
+  }    
+
+  // ngOnChanges() {           console.log('ngOnChange'); }
+
+  // ngDoCheck() {             console.log('ngDoCheck'); }
+
+  // ngAfterContentInit() {    console.log('ngAfterContentInit'); }
+
+  // ngAfterContentChecked() { console.log('ngAfterContentChecked'); }
+
+  // ngAfterViewInit() {       console.log('ngAfterViewInit'); }
+
+  // ngAfterViewChecked() {    console.log('ngAfterViewChecked'); } 
+
+  // ngOnDestroy() {           console.log('ngOnDestroy'); }
 
 }

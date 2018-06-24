@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-header',
@@ -7,17 +8,12 @@ import { User } from '../user.model';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public users: User[] = [
-    {
-      id: 1,
-      firstName: 'Nastya',
-      lastName: 'Malai'
-    }
-  ]
+  public users: User[] = [];
 
-  constructor() { }
+  constructor(private getUsers: UsersService) { }
 
   ngOnInit() {
+    this.users = this.getUsers.getUsers();
   }
 
 }
