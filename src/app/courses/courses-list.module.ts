@@ -6,12 +6,14 @@ import { CourseItemComponent } from './course-item/course-item.component';
 import { SearchComponent } from './search/search.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { LoadMoreComponent } from './load-more/load-more.component';
+import { CoursesService } from './courses.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule
   ],
+  providers: [CoursesService],
   declarations: [CourseWrapperComponent, CourseItemComponent, SearchComponent, AddCourseComponent, LoadMoreComponent],
   exports: [CourseWrapperComponent, SearchComponent, AddCourseComponent, LoadMoreComponent]
 })

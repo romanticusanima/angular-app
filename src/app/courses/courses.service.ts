@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CourseItem } from './course-item.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class CoursesService {
 
   constructor() { }
