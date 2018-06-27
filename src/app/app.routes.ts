@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
-import { TodoListComponent } from './todo-list/todo-list/todo-list.component';
+import { CourseWrapperComponent } from './courses/course-wrapper/course-wrapper.component';
 
 export const ROUTES: Route[] = [
-    { path: 'listing', component: TodoListComponent },
+    { path: 'listing', component: CourseWrapperComponent },
     { path: '', redirectTo: 'listing', pathMatch: 'full' }
 ];

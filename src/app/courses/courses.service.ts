@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { TodoListItem } from './todo-list-item.model';
+import { CourseItem } from './course-item.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TodoService {
+export class CoursesService {
 
   constructor() { }
 
-  public getTodoItems(): TodoListItem[] {
+  public getcourseItems(): CourseItem[] {
     return [
       {
         id: 1,

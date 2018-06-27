@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TodoListItem } from '../todo-list-item.model';
+import { CourseItem } from '../course-item.model';
 
 @Component({
-  selector: 'app-todo-list-item',
-  templateUrl: './todo-list-item.component.html',
-  styleUrls: ['./todo-list-item.component.css']
+  selector: 'app-course-item',
+  templateUrl: './course-item.component.html',
+  styleUrls: ['./course-item.component.css']
 })
-export class TodoListItemComponent implements OnInit {
-  @Input() public todoItem: TodoListItem;
-  @Output() getItemId: EventEmitter<number> = new EventEmitter();
+export class CourseItemComponent implements OnInit {
+  @Input() public courseItem: CourseItem;
+  @Output() getItemId: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
@@ -16,7 +16,7 @@ export class TodoListItemComponent implements OnInit {
     console.log('ngOnInit');
   }
 
-  getId(event, id) {
+  getId(id) {
     this.getItemId.emit(id);
     console.log(id);
   }    

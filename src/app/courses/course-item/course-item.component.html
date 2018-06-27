@@ -2,21 +2,21 @@
   <div class="col-10">
     <div class="row">
         <div class="col-8 text-primary">
-          {{todoItem.title}}
+          {{courseItem.title}}
         </div>
         <div class="col-2 text-info">
-          {{todoItem.duration}}
+          {{courseItem.duration}}
         </div>
         <div class="col-2 text-info">
-          {{todoItem.creationDate}}
+          {{courseItem.creationDate}}
         </div>
     </div>
     <div>
-      {{todoItem.description}}
+      {{courseItem.description}}
     </div>
   </div>
   <div class="col-2">
       <button type="button" class="btn btn-primary mb-2 float-right d-block">Edit</button>
-      <button type="button" class="btn btn-danger float-right" (click)="getId($event, todoItem.id)">Delete</button>
+      <button type="button" class="btn btn-danger float-right" (click)="getId(courseItem.id)">Delete</button>
   </div>
 </div>

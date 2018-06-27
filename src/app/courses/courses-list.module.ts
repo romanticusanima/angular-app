@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
+import { CourseWrapperComponent } from './course-wrapper/course-wrapper.component';
+import { CourseItemComponent } from './course-item/course-item.component';
 import { SearchComponent } from './search/search.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { LoadMoreComponent } from './load-more/load-more.component';
@@ -12,7 +12,7 @@ import { LoadMoreComponent } from './load-more/load-more.component';
     CommonModule,
     FormsModule
   ],
-  declarations: [TodoListComponent, TodoListItemComponent, SearchComponent, AddCourseComponent, LoadMoreComponent],
-  exports: [TodoListComponent, SearchComponent, AddCourseComponent, LoadMoreComponent]
+  declarations: [CourseWrapperComponent, CourseItemComponent, SearchComponent, AddCourseComponent, LoadMoreComponent],
+  exports: [CourseWrapperComponent, SearchComponent, AddCourseComponent, LoadMoreComponent]
 })
-export class TodoListModule { }
+export class CoursesListModule { }

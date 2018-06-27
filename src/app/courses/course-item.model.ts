@@ -1,4 +1,4 @@
-export interface TodoListItem {
+export interface CourseItem {
     id: number;
     title: string;
     creationDate: string;
