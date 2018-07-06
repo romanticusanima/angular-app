@@ -12,4 +12,9 @@ describe('UsersService', () => {
   it('should be created', inject([UsersService], (service: UsersService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should return real value', () => {
+    let service = new UsersService();
+    expect(service.getUser().length).toEqual(1);
+  });
 });
