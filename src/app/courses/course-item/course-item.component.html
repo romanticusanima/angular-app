@@ -1,14 +1,19 @@
-<div class="row no-gutters p-3 mb-2 rounded" style="background: #cccff9;">
+<div class="row no-gutters p-3 mb-2 rounded course" 
+    [ngClass]="{top: courseItem.top}"
+    [appCreatedDate]="courseItem.creationDate">
   <div class="col-10">
     <div class="row">
         <div class="col-8 text-primary">
-          {{courseItem?.title}}
+          {{courseItem?.title | uppercase}}
+          <span *ngIf="courseItem.top">
+            <i class="fas fa-star"></i>
+          </span>
         </div>
         <div class="col-2 text-info">
-          {{courseItem?.duration}}
+          {{courseItem?.duration | convertDuration}}
         </div>
         <div class="col-2 text-info">
-          {{courseItem?.creationDate}}
+          {{courseItem?.creationDate | date}}
         </div>
     </div>
     <div>

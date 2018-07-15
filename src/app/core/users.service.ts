@@ -7,13 +7,11 @@ export class UsersService {
 
   constructor() { }
 
-  public getUser(): User[] {
-    return [
-      {
+  public getUser(): User {
+    return {
         id: 1,
         firstName: 'Nastya',
         lastName: 'Malai'
-      }
-    ]
+      };
   }
 }

@@ -30,7 +30,6 @@ describe('CourseItemComponent', () => {
     it('should click on button and return correct value', () => {
       spyOn(component.getItemId, 'emit');
       component.getId(1);
-      expect(component.getItemId.emit).toHaveBeenCalled();
       expect(component.getItemId.emit).toHaveBeenCalledWith(1);
     });
   })

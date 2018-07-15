@@ -1,4 +1,10 @@
-<div>
-  <app-course-item *ngFor="let item of courseItems" [courseItem]="item"></app-course-item>
+<app-search (Search)="receiveResult($event)"></app-search>
+
+<div *ngIf="courseItems.length  > 0">
+  <app-course-item *ngFor="let item of courseItems | orderBy: 'creationDate' | filter: searchResult " [courseItem]="item"></app-course-item>
   <app-load-more></app-load-more>
+</div>
+
+<div class="alert alert-info text-center" *ngIf="courseItems.length == 0">
+  {{message}}
 </div>

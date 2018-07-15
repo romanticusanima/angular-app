@@ -8,7 +8,7 @@ import { UsersService } from '../users.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public user: User[] = [];
+  public user: User;
 
   constructor(private getUsers: UsersService) { }
 

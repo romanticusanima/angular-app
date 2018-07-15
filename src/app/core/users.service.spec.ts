@@ -15,6 +15,6 @@ describe('UsersService', () => {
 
   it('should return real value', () => {
     let service = new UsersService();
-    expect(service.getUser().length).toEqual(1);
+    expect(service.getUser().id).toEqual(1);
   });
 });
