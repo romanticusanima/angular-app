@@ -7,15 +7,13 @@ import { SearchComponent } from './search/search.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { LoadMoreComponent } from './load-more/load-more.component';
 import { CoursesService } from './courses.service';
-import { DurationPipe } from '../shared/duration.pipe';
-import { OrderByPipe } from '../shared/order-by.pipe';
-import { CreatedDateDirective } from '../shared/created-date.directive';
-import { FilterPipe } from '../shared/filter.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [
     CoursesService
@@ -25,11 +23,7 @@ import { FilterPipe } from '../shared/filter.pipe';
     CourseItemComponent, 
     SearchComponent, 
     AddCourseComponent, 
-    LoadMoreComponent,
-    DurationPipe,
-    OrderByPipe,
-    CreatedDateDirective,
-    FilterPipe
+    LoadMoreComponent
   ],
   exports: [
     CourseWrapperComponent, 

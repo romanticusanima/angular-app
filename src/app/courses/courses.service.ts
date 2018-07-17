@@ -20,7 +20,7 @@ export class CoursesService {
       {
         id: 2,
         title: 'Video Course #2',
-        creationDate: new Date('07.02.2018'),
+        creationDate: new Date('07.15.2018'),
         duration: 220,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         top: true

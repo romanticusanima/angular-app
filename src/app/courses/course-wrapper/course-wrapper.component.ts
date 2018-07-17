@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseItem } from '../course-item.model';
 import { CoursesService } from '../courses.service';
-import { FilterPipe } from '../../shared/filter.pipe';
+import { FilterPipe } from '../../shared/pipes/filter.pipe';
 
 
 @Component({

@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+const MINUTES: number = 60;
+
 @Pipe({
   name: 'convertDuration'
 })
@@ -9,8 +11,8 @@ export class DurationPipe implements PipeTransform {
     if (value < 60) {
         return value + ' min';
     } else {
-      let minutes = value % 60;
-      let hours = (value - minutes) / 60;
+      let minutes = value % MINUTES;
+      let hours = (value - minutes) / MINUTES;
       if (minutes == 0) {
         return hours + ' h ';
       } else {

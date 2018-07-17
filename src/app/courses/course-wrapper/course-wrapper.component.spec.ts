@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseWrapperComponent } from './course-wrapper.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CoursesService } from '../courses.service';
-import { By } from "@angular/platform-browser";
 
 describe('CourseWrapperComponent', () => {
   let component: CourseWrapperComponent;
