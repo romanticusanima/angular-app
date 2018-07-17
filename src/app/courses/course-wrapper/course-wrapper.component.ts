@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseItem } from '../course-item.model';
 import { CoursesService } from '../courses.service';
-import { FilterPipe } from '../../shared/pipes/filter.pipe';
-
 
 @Component({
   selector: 'app-course-wrapper',
   templateUrl: './course-wrapper.component.html',
-  styleUrls: ['./course-wrapper.component.css'],
-  providers: [ FilterPipe ]
+  styleUrls: ['./course-wrapper.component.css']
 })
 export class CourseWrapperComponent implements OnInit {
   public courseItems: CourseItem[] = [];
