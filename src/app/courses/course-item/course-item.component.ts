@@ -12,27 +12,10 @@ export class CourseItemComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log('ngOnInit');
-  }
+  ngOnInit() { }
 
   getId(id) {
     this.getItemId.emit(id);
     console.log(id);
   }    
-
-  // ngOnChanges() {           console.log('ngOnChange'); }
-
-  // ngDoCheck() {             console.log('ngDoCheck'); }
-
-  // ngAfterContentInit() {    console.log('ngAfterContentInit'); }
-
-  // ngAfterContentChecked() { console.log('ngAfterContentChecked'); }
-
-  // ngAfterViewInit() {       console.log('ngAfterViewInit'); }
-
-  // ngAfterViewChecked() {    console.log('ngAfterViewChecked'); } 
-
-  // ngOnDestroy() {           console.log('ngOnDestroy'); }
-
 }

@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseWrapperComponent } from './course-wrapper.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CoursesService } from '../courses.service';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('CourseWrapperComponent', () => {
   let component: CourseWrapperComponent;
@@ -10,9 +11,12 @@ describe('CourseWrapperComponent', () => {
   let coursesService: Partial<CoursesService>;
 
   beforeEach(async(() => {
-    coursesService = { getcourseItems: jasmine.createSpy('getcourseItems') };
+    coursesService = { 
+      getcourseItems: jasmine.createSpy('getcourseItems').and.returnValue([]) 
+    };
 
     TestBed.configureTestingModule({
+      imports: [ SharedModule ],
       declarations: [ CourseWrapperComponent ],
       providers: [{provide: CoursesService, useValue: coursesService}],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
@@ -23,7 +27,6 @@ describe('CourseWrapperComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseWrapperComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -31,6 +34,7 @@ describe('CourseWrapperComponent', () => {
   });
 
   it('should call servicee', () => {
+    fixture.detectChanges();
     expect(coursesService.getcourseItems).toHaveBeenCalled();
   });
 });

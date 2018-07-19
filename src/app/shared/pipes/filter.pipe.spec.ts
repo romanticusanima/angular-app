@@ -18,8 +18,11 @@ describe('FilterPipe', () => {
     pipe = new FilterPipe();
   });
 
-  it('providing no value returns fallback', () => {
+  it('providing no value returns all courses', () => {
+    expect(pipe.transform(courses, undefined)).toEqual(courses);
+  }); 
+
+  it('return only match result', () => {
     expect(pipe.transform(courses, '1')).toEqual([ courses[0] ]);
-    console.log(pipe.transform(courses, ' 1'));
   }); 
 });

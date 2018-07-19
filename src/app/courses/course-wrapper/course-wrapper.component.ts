@@ -12,14 +12,14 @@ export class CourseWrapperComponent implements OnInit {
   public message: string = "Currently you don't have available courses. Feel free to add new courses.";
   searchResult: string;
 
-  constructor(private CoursesService: CoursesService) { }
+  constructor(private coursesService: CoursesService) { }
 
   receiveResult($event) {
     this.searchResult = $event;
   }
 
   ngOnInit() {
-    this.courseItems = this.CoursesService.getcourseItems();
+    this.courseItems = this.coursesService.getcourseItems();
   }
 
 }

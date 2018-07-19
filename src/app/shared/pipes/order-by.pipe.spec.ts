@@ -7,13 +7,13 @@ describe('OrderByPipe', () => {
     {
       id: 1,
       title: 'Video Course #1',
-      creationDate: new Date('03.02.2017'),
-      duration: 80
+      creationDate: new Date('07.10.2018'),
+      duration: 220
     },
     {
       id: 2,
       title: 'Video Course #2',
-      creationDate: new Date('07.10.2018'),
+      creationDate: new Date('03.02.2017'),
       duration: 220
     }
   ]
@@ -22,7 +22,15 @@ describe('OrderByPipe', () => {
     pipe = new OrderByPipe();
   });
 
-  it('providing no value returns fallback', () => {
-    expect(pipe.transform(courses, '')).toEqual(courses);
+  it('check order return -1', () => {
+    expect(pipe.transform(courses, 'title')[0].id).toBe(1);
+  }); 
+
+  it('check order return 1', () => {
+    expect(pipe.transform(courses, 'creationDate')[0].id).toBe(2);
+  });
+
+  it('check order return 0', () => {
+    expect(pipe.transform(courses, 'duration')[0].id).toBe(2);
   }); 
 });
