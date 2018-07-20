@@ -18,8 +18,12 @@ export class CourseWrapperComponent implements OnInit {
     this.searchResult = $event;
   }
 
-  ngOnInit() {
+  getCoursesList() {
     this.courseItems = this.coursesService.getcourseItems();
+  }
+
+  ngOnInit() {
+    this.getCoursesList();
   }
 
 }

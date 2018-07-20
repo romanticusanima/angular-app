@@ -15,3 +15,12 @@
 .fa-star {
     color: #f5f513
 }
+
+.modal.show {
+    display: block;
+}
+
+.modal-header,
+.modal-footer {
+    border: none;
+}

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { CourseItem } from '../course-item.model';
+import { CoursesService } from '../courses.service';
 
 @Component({
   selector: 'app-course-item',
@@ -9,13 +10,21 @@ import { CourseItem } from '../course-item.model';
 export class CourseItemComponent implements OnInit {
   @Input() public courseItem: CourseItem;
   @Output() getItemId: EventEmitter<number> = new EventEmitter<number>();
+  @ViewChild('confirmationModal') myModal;
 
-  constructor() { }
+  constructor(private coursesService: CoursesService) { }
 
   ngOnInit() { }
 
-  getId(id) {
+  deleteItem(id) {
     this.getItemId.emit(id);
-    console.log(id);
-  }    
+    this.coursesService.removeCourse(id);
+  } 
+
+  openModel() {
+    this.myModal.nativeElement.className = 'modal fade show';
+  }
+  closeModel() {
+    this.myModal.nativeElement.className = 'modal fade';
+  }
 }

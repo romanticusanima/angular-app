@@ -34,7 +34,7 @@ describe('CourseItemComponent', () => {
     });
 
     it('should click on button and return correct value', () => {
-      component.getId(1);
+      component.deleteItem(1);
       expect(component.getItemId.emit).toHaveBeenCalledWith(1);
     });
   })
