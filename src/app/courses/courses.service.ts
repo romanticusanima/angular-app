@@ -64,6 +64,6 @@ export class CoursesService {
     let index = this.courses.findIndex(function(el) {
       return el.id === courseId;
     });
-    this.courses.splice(index, 1);
+    return this.courses.splice(index, 1);
   }
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { UsersService } from '../users.service';
+import { AuthorizationService } from '../authorization.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   
-  let usersService: Partial<UsersService>;
+  let usersService: Partial<AuthorizationService>;
 
   beforeEach(async(() => {
     usersService = { getUser: jasmine.createSpy('getUser') };
 
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
-      providers: [{provide: UsersService, useValue: usersService}],
+      providers: [{provide: AuthorizationService, useValue: usersService}],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();

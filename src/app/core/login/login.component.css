@@ -1,0 +1,16 @@
+.login-container {
+    padding-top: 40%;
+}
+
+.login-block {
+    border:1px solid #c3c3c3;
+}
+
+.login-header {
+    border-bottom: 1px solid #c3c3c3;
+    padding: 10px 30px;
+}
+
+.login-form {
+    padding: 20px 50px;
+}

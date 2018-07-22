@@ -3,16 +3,17 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './header/logo/logo.component';
-import { LoginComponent } from './header/login/login.component';
+import { UserComponent } from './header/user/user.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { UsersService } from './users.service';
+import { AuthorizationService } from './authorization.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  providers: [UsersService],
-  declarations: [HeaderComponent, FooterComponent, LogoComponent, LoginComponent, BreadcrumbsComponent],
-  exports: [HeaderComponent, FooterComponent, LogoComponent, LoginComponent, BreadcrumbsComponent]
+  providers: [AuthorizationService],
+  declarations: [HeaderComponent, FooterComponent, LogoComponent, UserComponent, BreadcrumbsComponent, LoginComponent],
+  exports: [HeaderComponent, FooterComponent, LogoComponent, UserComponent, BreadcrumbsComponent, LoginComponent]
 })
 export class CoreModule { }

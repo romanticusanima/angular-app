@@ -1,4 +1,5 @@
 <nav class="navbar navbar-dark bg-dark">
   <app-logo></app-logo>
-  <app-login [user]="user"></app-login>
+  <app-user *ngIf="isLoggedIn" [user]="user"></app-user>
 </nav>
+<app-breadcrumbs *ngIf="isLoggedIn"></app-breadcrumbs>

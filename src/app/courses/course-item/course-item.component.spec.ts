@@ -3,16 +3,24 @@ import { By } from "@angular/platform-browser";
 import { CourseItemComponent } from './course-item.component';
 import { ElementRef } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
+import { CoursesService } from '../courses.service';
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;
   let fixture: ComponentFixture<CourseItemComponent>;
-  let button: ElementRef;
+  //let button: ElementRef;
+  let coursesService: Partial<CoursesService>;
 
   beforeEach(async(() => {
+    let val: boolean;
+    coursesService = { 
+      removeCourse: jasmine.createSpy('removeCourse').and.returnValue([])
+    };
+
     TestBed.configureTestingModule({
       imports: [ SharedModule ],
-      declarations: [ CourseItemComponent ]
+      declarations: [ CourseItemComponent ],
+      providers: [{provide: CoursesService, useValue: coursesService}]
     })
     .compileComponents();
   }));
@@ -20,22 +28,17 @@ describe('CourseItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseItemComponent);
     component = fixture.componentInstance;
-    button = fixture.debugElement.query(By.css('.b-delete'));
+    //button = fixture.debugElement.query(By.css('.b-delete'));
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('getId', () => {
-    beforeEach(() => {
-      spyOn(component.getItemId, 'emit');
-      component.courseItem = { id : 1 } as any;
-    });
-
-    it('should click on button and return correct value', () => {
-      component.deleteItem(1);
-      expect(component.getItemId.emit).toHaveBeenCalledWith(1);
+  describe('deleteItem', () => {
+    it('method removeCourse should be called', () => {
+      fixture.detectChanges();
+      expect(coursesService.removeCourse).toHaveBeenCalled();
     });
   })
 });

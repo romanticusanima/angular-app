@@ -9,7 +9,7 @@ import { CoursesService } from '../courses.service';
 })
 export class CourseItemComponent implements OnInit {
   @Input() public courseItem: CourseItem;
-  @Output() getItemId: EventEmitter<number> = new EventEmitter<number>();
+  //@Output() getItemId: EventEmitter<number> = new EventEmitter<number>();
   @ViewChild('confirmationModal') myModal;
 
   constructor(private coursesService: CoursesService) { }
@@ -17,7 +17,7 @@ export class CourseItemComponent implements OnInit {
   ngOnInit() { }
 
   deleteItem(id) {
-    this.getItemId.emit(id);
+    //this.getItemId.emit(id);
     this.coursesService.removeCourse(id);
   } 
 
