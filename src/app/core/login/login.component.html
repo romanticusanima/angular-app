@@ -1,4 +1,4 @@
-<div class="login-container">
+<div *ngIf="!isLoggedIn" class="login-container">
   <div class="login-block">
     <h2 class="login-header">Login</h2>
     <div class="login-form">
@@ -10,7 +10,7 @@
         <label>Password</label>
         <input type="password" class="form-control" placeholder="Password">
       </div>
-      <button type="submit" class="btn btn-primary" (click)="Login()">Login</button>
+      <button type="submit" class="btn btn-primary login" (click)="Login()">Login</button>
     </div>
   </div>
 </div>

@@ -1,5 +1,7 @@
 .login-container {
-    padding-top: 40%;
+    padding-top: 150px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .login-block {

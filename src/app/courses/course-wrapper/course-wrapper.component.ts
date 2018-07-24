@@ -26,12 +26,12 @@ export class CourseWrapperComponent implements OnInit {
   }
 
   getLoginInfo() {
-    this.isLoggedIn = this.authorizationService.IsAuth();
+    this.isLoggedIn = this.authorizationService.isAuth();
   }
 
   ngOnInit() {
     this.getLoginInfo();
-    if(this.getLoginInfo()){
+    if(this.isLoggedIn) {
       this.getCoursesList();
     }
   }

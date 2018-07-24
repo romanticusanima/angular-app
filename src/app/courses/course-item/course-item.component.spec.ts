@@ -12,7 +12,6 @@ describe('CourseItemComponent', () => {
   let coursesService: Partial<CoursesService>;
 
   beforeEach(async(() => {
-    let val: boolean;
     coursesService = { 
       removeCourse: jasmine.createSpy('removeCourse').and.returnValue([])
     };

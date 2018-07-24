@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../authorization.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +10,15 @@ import { AuthorizationService } from '../authorization.service';
 export class LoginComponent implements OnInit {
   public isLoggedIn: boolean = false;
 
-  constructor(private authorizationService: AuthorizationService) { }
+  constructor(private authorizationService: AuthorizationService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
   Login() {
-    this.isLoggedIn = this.authorizationService.Login();
+    this.isLoggedIn = this.authorizationService.login();
     console.log("you logged in succesfully");
+    this.router.navigateByUrl('/courses');
   }
-
 }

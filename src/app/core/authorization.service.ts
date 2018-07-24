@@ -17,15 +17,15 @@ export class AuthorizationService {
       };
   }
 
-  public Login() {
+  public login() {
     return this.isLoggedIn = true;
   }
 
-  public Logout() {
+  public logout() {
     return this.isLoggedIn = false;
   }
 
-  public IsAuth() {
+  public isAuth() {
     return this.isLoggedIn;
   }
 }

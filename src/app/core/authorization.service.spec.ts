@@ -21,14 +21,14 @@ describe('UsersService', () => {
   });
 
   it('should login', () => {
-    expect(service.Login()).toEqual(true);
+    expect(service.login()).toEqual(true);
   });
 
   it('should loggout', () => {
-    expect(service.Logout()).toEqual(false);
+    expect(service.logout()).toEqual(false);
   });
 
   it('should return auth info', () => {
-    expect(service.IsAuth()).toEqual(false);
+    expect(service.isAuth()).toEqual(false);
   });
 });

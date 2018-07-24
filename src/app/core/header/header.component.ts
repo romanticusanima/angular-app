@@ -9,13 +9,13 @@ import { AuthorizationService } from '../authorization.service';
 })
 export class HeaderComponent implements OnInit {
   public user: User;
-  public isLoggedIn: boolean = false;
+  public isLoggedIn: boolean;
 
   constructor(private authorizationService: AuthorizationService) { }
 
   ngOnInit() {
     this.user = this.authorizationService.getUser();
-    this.isLoggedIn = this.authorizationService.IsAuth();
+    this.isLoggedIn = this.authorizationService.isAuth();
   }
 
 }

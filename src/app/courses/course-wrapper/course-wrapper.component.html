@@ -1,4 +1,4 @@
-<div *ngIf="isLoggedIn">
+<div *ngIf="isLoggedIn" class="mt-3">
   <app-search (Search)="receiveResult($event)"></app-search>
 
   <div *ngIf="courseItems.length  > 0">
