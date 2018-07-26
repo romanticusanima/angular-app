@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { CoursesListModule } from './courses/courses-list.module';
+import { AddCourseModule } from './add-course/add-course.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CoursesListModule } from './courses/courses-list.module';
     SharedModule,
     CoreModule,
     CoursesListModule,
+    AddCourseModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [],

@@ -7,6 +7,10 @@ describe('DurationPipe', () => {
     pipe = new DurationPipe();
   });
 
+  it('no value return empty string', () => {
+    expect(pipe.transform(NaN)).toBe('');
+  }); 
+
   it('42 minutes is equal 42 min', () => {
     expect(pipe.transform(42)).toBe('42 min');
   }); 

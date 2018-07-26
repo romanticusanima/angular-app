@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CourseItem } from '../course-item.model';
 import { CoursesService } from '../courses.service';
 import { AuthorizationService } from '../../core/authorization.service';
@@ -6,7 +6,8 @@ import { AuthorizationService } from '../../core/authorization.service';
 @Component({
   selector: 'app-course-wrapper',
   templateUrl: './course-wrapper.component.html',
-  styleUrls: ['./course-wrapper.component.css']
+  styleUrls: ['./course-wrapper.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseWrapperComponent implements OnInit {
   public isLoggedIn: boolean = false;

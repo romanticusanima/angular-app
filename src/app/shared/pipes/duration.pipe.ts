@@ -8,6 +8,10 @@ const MINUTES: number = 60;
 
 export class DurationPipe implements PipeTransform {
   transform(value: number): string {
+    if (!value) {
+      return '';
+    }
+
     if (value < 60) {
         return value + ' min';
     }
