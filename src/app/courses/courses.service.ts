@@ -50,7 +50,7 @@ export class CoursesService {
     }
   ];
 
-  public getcourseItems() {
+  public getCourseItems() {
     return this.courses;
   }
 
@@ -60,10 +60,7 @@ export class CoursesService {
 
   updateCourse() {}
 
-  removeCourse(courseId) {
-    let index = this.courses.findIndex(function(el) {
-      return el.id === courseId;
-    });
-    return this.courses.splice(index, 1);
+  removeCourse(courseId: number) {
+    return this.courses = this.courses.filter(course => course.id !== courseId);
   }
 }

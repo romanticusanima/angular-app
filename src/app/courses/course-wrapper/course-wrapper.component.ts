@@ -23,7 +23,7 @@ export class CourseWrapperComponent implements OnInit {
   }
 
   getCoursesList() {
-    this.courseItems = this.coursesService.getcourseItems();
+    this.courseItems = this.coursesService.getCourseItems();
   }
 
   getLoginInfo() {

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../user.model';
+import { AuthorizationService } from '../../authorization.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -8,10 +10,18 @@ import { User } from '../../user.model';
 })
 export class UserComponent implements OnInit {
   @Input() public user: User;
+  public isLoggedIn: boolean;
 
-  constructor() { }
+  constructor(private authorizationService: AuthorizationService, 
+              private router: Router) { }
 
   ngOnInit() {
+  }
+
+  Loguot() {
+    this.isLoggedIn = this.authorizationService.logout();
+    console.log("you logged out succesfully");
+    this.router.navigateByUrl('/login');
   }
 
 }

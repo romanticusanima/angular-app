@@ -12,7 +12,7 @@ describe('CourseWrapperComponent', () => {
 
   beforeEach(async(() => {
     coursesService = { 
-      getcourseItems: jasmine.createSpy('getcourseItems').and.returnValue([]) 
+      getCourseItems: jasmine.createSpy('getCourseItems').and.returnValue([]) 
     };
 
     TestBed.configureTestingModule({
@@ -35,6 +35,6 @@ describe('CourseWrapperComponent', () => {
 
   it('should call servicee', () => {
     fixture.detectChanges();
-    expect(coursesService.getcourseItems).toHaveBeenCalled();
+    expect(coursesService.getCourseItems).toHaveBeenCalled();
   });
 });

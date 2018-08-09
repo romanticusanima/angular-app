@@ -23,7 +23,6 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -31,6 +30,12 @@ describe('HeaderComponent', () => {
   });
 
   it('should use real value', () => {
+    fixture.detectChanges();
     expect(usersService.getUser).toHaveBeenCalled();
+  });
+
+  it('should use real value', () => {
+    fixture.detectChanges();
+    expect(usersService.getUser().id).toEqual(1);
   });
 });

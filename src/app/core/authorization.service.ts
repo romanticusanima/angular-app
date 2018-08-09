@@ -18,10 +18,12 @@ export class AuthorizationService {
   }
 
   public login() {
+    localStorage.setItem('currentUser', JSON.stringify({ token: 'fake token', name: this.getUser().firstName }));
     return this.isLoggedIn = true;
   }
 
   public logout() {
+    localStorage.removeItem('currentUser');
     return this.isLoggedIn = false;
   }
 

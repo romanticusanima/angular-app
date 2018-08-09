@@ -16,13 +16,13 @@ describe('CoursesService', () => {
   }));
 
   it('should return real value', () => {
-    expect(service.getcourseItems().length).toEqual(5);
-    expect(service.getcourseItems()[2].id).toEqual(3);
-    expect(service.getcourseItems()[2].title).toEqual('Video Course #3');
+    expect(service.getCourseItems().length).toEqual(5);
+    expect(service.getCourseItems()[2].id).toEqual(3);
+    expect(service.getCourseItems()[2].title).toEqual('Video Course #3');
   });
 
   it('check removeCourse', () => {
-    expect(service.removeCourse(1).length).toEqual(1);
-    expect(service.getcourseItems()[0].id).toEqual(2);
+    expect(service.removeCourse(1).length).toEqual(4);
+    expect(service.getCourseItems()[0].id).toEqual(2);
   });
 });
