@@ -7,14 +7,14 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   
-  let usersService: Partial<AuthorizationService>;
+  let authorizationService: Partial<AuthorizationService>;
 
   beforeEach(async(() => {
-    usersService = { getUser: jasmine.createSpy('getUser') };
+    authorizationService = { getUser: jasmine.createSpy('getUser') };
 
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
-      providers: [{provide: AuthorizationService, useValue: usersService}],
+      providers: [{provide: AuthorizationService, useValue: authorizationService}],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
@@ -31,11 +31,11 @@ describe('HeaderComponent', () => {
 
   it('should use real value', () => {
     fixture.detectChanges();
-    expect(usersService.getUser).toHaveBeenCalled();
+    expect(authorizationService.getUser).toHaveBeenCalled();
   });
 
   it('should use real value', () => {
     fixture.detectChanges();
-    expect(usersService.getUser().id).toEqual(1);
+    expect(authorizationService.getUser().id).toEqual(1);
   });
 });

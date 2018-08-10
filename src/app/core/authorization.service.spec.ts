@@ -3,7 +3,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { AuthorizationService } from './authorization.service';
 import { bloomAdd } from '@angular/core/src/render3/di';
 
-describe('UsersService', () => {
+describe('AuthorizationService', () => {
   let service = new AuthorizationService();
 
   beforeEach(() => {
