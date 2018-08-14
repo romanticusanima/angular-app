@@ -34,12 +34,11 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('login', () => {
-    it('method login should be called', () => {
-      let button = fixture.debugElement.query(By.css('.btn-login'));
-      button.triggerEventHandler('click', null);
-      fixture.detectChanges();
-      expect(authorizationService.login).toHaveBeenCalled();
-    });
-  })
+  it('method login should be called', () => {
+    let button = fixture.debugElement.query(By.css('.btn-login'));
+    button.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    expect(authorizationService.login).toHaveBeenCalled();
+  });
+
 });

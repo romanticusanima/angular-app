@@ -7,13 +7,14 @@ import { UserComponent } from './header/user/user.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { AuthorizationService } from './authorization.service';
 import { LoginComponent } from './login/login.component';
+import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   providers: [AuthorizationService],
-  declarations: [HeaderComponent, FooterComponent, LogoComponent, UserComponent, BreadcrumbsComponent, LoginComponent],
-  exports: [HeaderComponent, FooterComponent, LogoComponent, UserComponent, BreadcrumbsComponent, LoginComponent]
+  declarations: [HeaderComponent, FooterComponent, LogoComponent, UserComponent, BreadcrumbsComponent, LoginComponent, NoPageFoundComponent],
+  exports: [HeaderComponent, FooterComponent, LogoComponent, UserComponent, BreadcrumbsComponent, LoginComponent, NoPageFoundComponent]
 })
 export class CoreModule { }

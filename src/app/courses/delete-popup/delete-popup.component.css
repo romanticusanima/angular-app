@@ -1,0 +1,8 @@
+.modal {
+    display: block;
+}
+
+.modal-header,
+.modal-footer {
+    border: none;
+}

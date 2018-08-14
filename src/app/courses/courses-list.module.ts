@@ -8,6 +8,7 @@ import { AddCourseButtonComponent } from './add-course-button/add-course-button.
 import { LoadMoreComponent } from './load-more/load-more.component';
 import { CoursesService } from './courses.service';
 import { SharedModule } from '../shared/shared.module';
+import { DeletePopupComponent } from './delete-popup/delete-popup.component';
 
 @NgModule({
   imports: [
@@ -23,13 +24,15 @@ import { SharedModule } from '../shared/shared.module';
     CourseItemComponent, 
     SearchComponent, 
     AddCourseButtonComponent, 
-    LoadMoreComponent
+    LoadMoreComponent, 
+    DeletePopupComponent
   ],
   exports: [
     CourseWrapperComponent, 
     SearchComponent, 
     AddCourseButtonComponent, 
-    LoadMoreComponent
+    LoadMoreComponent,
+    DeletePopupComponent
   ]
 })
 export class CoursesListModule { }

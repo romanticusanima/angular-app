@@ -39,9 +39,13 @@ describe('CourseWrapperComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call servicee', () => {
+  it('should call authorization service', () => {
+    fixture.detectChanges();
+    expect(coursesService.getCourseItems).toHaveBeenCalled();
+  });
+
+  it('should call authorization service', () => {
     fixture.detectChanges();
     expect(authorizationService.isAuth).toHaveBeenCalled();
-   // expect(coursesService.getCourseItems).toHaveBeenCalled();
   });
 });

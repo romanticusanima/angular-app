@@ -1,25 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from "@angular/platform-browser";
+import { Router } from '@angular/router';
+import { By } from '@angular/platform-browser';
 import { CourseItemComponent } from './course-item.component';
-import { ElementRef } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
-import { CoursesService } from '../courses.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('CourseItemComponent', () => {
   let component: CourseItemComponent;
   let fixture: ComponentFixture<CourseItemComponent>;
-  //let button: ElementRef;
-  let coursesService: Partial<CoursesService>;
+  let router: Partial<Router>;
 
   beforeEach(async(() => {
-    coursesService = { 
-      removeCourse: jasmine.createSpy('removeCourse').and.returnValue([])
-    };
+    router = { navigate: jasmine.createSpy('navigate') };
 
     TestBed.configureTestingModule({
       imports: [ SharedModule ],
       declarations: [ CourseItemComponent ],
-      providers: [{provide: CoursesService, useValue: coursesService}]
+      providers: [{provide: Router, useValue: router}],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));
@@ -27,17 +25,16 @@ describe('CourseItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseItemComponent);
     component = fixture.componentInstance;
-    //button = fixture.debugElement.query(By.css('.b-delete'));
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('deleteItem', () => {
-    it('method removeCourse should be called', () => {
-      fixture.detectChanges();
-      expect(coursesService.removeCourse).toHaveBeenCalled();
-    });
-  })
+  it('method editCourse should redirect to /courses/id page', () => {
+    let button = fixture.debugElement.query(By.css('.btn-edit'));
+    button.triggerEventHandler('click', null);
+    fixture.detectChanges();
+    expect(router.navigate).toHaveBeenCalledWith(['/courses/new']);
+  });
 });

@@ -8,7 +8,7 @@ import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from
 })
 export class SearchComponent implements OnInit {
   public searchResult: string;
-  @Output() Search: EventEmitter<string> = new EventEmitter<string>();
+  @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
@@ -16,6 +16,6 @@ export class SearchComponent implements OnInit {
   }
 
   showResult() {
-    this.Search.emit(this.searchResult);
+    this.search.emit(this.searchResult);
   }
 }

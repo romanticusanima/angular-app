@@ -37,4 +37,8 @@ export class CourseWrapperComponent implements OnInit {
     }
   }
 
+  ngDoCheck() {
+    this.getCoursesList(); 
+  }
+
 }

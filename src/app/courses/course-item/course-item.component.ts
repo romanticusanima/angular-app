@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { CourseItem } from '../course-item.model';
 import { CoursesService } from '../courses.service';
 
@@ -12,24 +14,21 @@ export class CourseItemComponent implements OnInit {
   @Input() public courseItem: CourseItem;
   @Output() getItemId: EventEmitter<number> = new EventEmitter<number>();
   @ViewChild('confirmationModal') myModal;
-  public searchResult: string;
+  public isOpen: boolean = false;
 
-  constructor(private coursesService: CoursesService) { }
+  constructor(private router: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() { } 
 
-  deleteItem(id) {
-    this.getItemId.emit(id);
-    this.searchResult = '';
-    this.coursesService.removeCourse(id);
-    this.coursesService.getCourseItems();
-    this.closeModel();
-  } 
-
-  openModel() {
-    this.myModal.nativeElement.className = 'modal fade show';
+  openPopup() {
+    this.isOpen = true;
   }
-  closeModel() {
-    this.myModal.nativeElement.className = 'modal fade';
+
+  getIsOpen($event) {
+    this.isOpen = $event;
+  }
+
+  editCourse(id) {
+    this.router.navigate(['/courses', id]);
   }
 }
