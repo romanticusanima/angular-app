@@ -31,6 +31,13 @@ describe('CourseItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should open popup', () => {
+    fixture.detectChanges();
+    let button = fixture.debugElement.query(By.css('.btn-open'));
+    button.triggerEventHandler('click', null);
+    expect(component.isOpen).toBeTruthy();
+  });
+
   it('method editCourse should redirect to /courses/id page', () => {
     let button = fixture.debugElement.query(By.css('.btn-edit'));
     button.triggerEventHandler('click', null);

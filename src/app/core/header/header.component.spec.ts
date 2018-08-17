@@ -10,7 +10,10 @@ describe('HeaderComponent', () => {
   let authorizationService: Partial<AuthorizationService>;
 
   beforeEach(async(() => {
-    authorizationService = { getUser: jasmine.createSpy('getUser') };
+    authorizationService = { 
+      getUser: jasmine.createSpy('getUser').and.returnValue({}),
+      isAuth: jasmine.createSpy('isAuth')
+    };
 
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
@@ -29,13 +32,9 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should use real value', () => {
+  it('should call getUser method', () => {
+    component.ngOnInit();
     fixture.detectChanges();
     expect(authorizationService.getUser).toHaveBeenCalled();
-  });
-
-  it('should use real value', () => {
-    fixture.detectChanges();
-    expect(authorizationService.getUser().id).toEqual(1);
   });
 });

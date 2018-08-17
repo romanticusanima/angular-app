@@ -8,11 +8,12 @@ import { AuthorizationService } from '../authorization.service';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  
   let authorizationService: Partial<AuthorizationService>;
   let router: Partial<Router>;
 
   beforeEach(async(() => {
-    authorizationService = { login: jasmine.createSpy('login').and.returnValue([]) }; 
+    authorizationService = { login: jasmine.createSpy('login') }; 
     router = { navigate: jasmine.createSpy('navigate') };
 
     TestBed.configureTestingModule({
@@ -35,9 +36,9 @@ describe('LoginComponent', () => {
   });
 
   it('method login should be called', () => {
+    fixture.detectChanges();
     let button = fixture.debugElement.query(By.css('.btn-login'));
     button.triggerEventHandler('click', null);
-    fixture.detectChanges();
     expect(authorizationService.login).toHaveBeenCalled();
   });
 

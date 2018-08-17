@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ChangeDetect
 import { Router } from '@angular/router';
 
 import { CourseItem } from '../course-item.model';
-import { CoursesService } from '../courses.service';
 
 @Component({
   selector: 'app-course-item',
@@ -13,7 +12,6 @@ import { CoursesService } from '../courses.service';
 export class CourseItemComponent implements OnInit {
   @Input() public courseItem: CourseItem;
   @Output() getItemId: EventEmitter<number> = new EventEmitter<number>();
-  @ViewChild('confirmationModal') myModal;
   public isOpen: boolean = false;
 
   constructor(private router: Router) { }

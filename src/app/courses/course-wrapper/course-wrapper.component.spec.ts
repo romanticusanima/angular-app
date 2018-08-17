@@ -16,7 +16,7 @@ describe('CourseWrapperComponent', () => {
     coursesService = { 
       getCourseItems: jasmine.createSpy('getCourseItems').and.returnValue([]) 
     };
-    authorizationService = { login: jasmine.createSpy('isAuth') }; 
+    authorizationService = { isAuth: jasmine.createSpy('isAuth').and.returnValue(true) }; 
 
     TestBed.configureTestingModule({
       imports: [ SharedModule ],
@@ -40,7 +40,7 @@ describe('CourseWrapperComponent', () => {
   });
 
   it('should call authorization service', () => {
-    fixture.detectChanges();
+    component.ngOnInit();
     expect(coursesService.getCourseItems).toHaveBeenCalled();
   });
 

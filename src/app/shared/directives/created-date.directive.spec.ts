@@ -32,6 +32,7 @@ describe('CreatedDateDirective', () => {
   });
 
   it('should create directive component', () => {
+    fixture.componentInstance.createdDate = new Date('08.15.2018');
     fixture.detectChanges();
     const directiveEl = fixture.debugElement.query(By.directive(CreatedDateDirective));
     expect(directiveEl.nativeElement).toBeDefined();
