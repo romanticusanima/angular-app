@@ -5,4 +5,5 @@ export interface CourseItem {
     duration: number;
     description: string;
     top: boolean;
+    author: string;
 }

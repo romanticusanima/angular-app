@@ -3,13 +3,13 @@
     [appCreatedDate]="courseItem.creationDate">
   <div class="col-10">
     <div class="row">
-        <div class="col-8 text-primary">
+        <div class="col-7 text-primary text-truncate" [title]="courseItem.title">
           {{courseItem?.title | uppercase}}
           <span *ngIf="courseItem.top">
             <i class="fas fa-star"></i>
           </span>
         </div>
-        <div class="col-2 text-info">
+        <div class="col-3 text-info text-right">
           {{courseItem?.duration | convertDuration}}
         </div>
         <div class="col-2 text-info">
@@ -22,7 +22,7 @@
   </div>
   <div class="col-2 col-buttons">
       <button type="button" class="btn btn-primary mb-2 float-right d-block btn-edit" (click)="editCourse(courseItem.id)">Edit</button>
-      <button type="button" class="btn btn-danger float-right" (click)="openPopup()">Delete</button>
+      <button type="button" class="btn btn-danger float-right btn-open" (click)="openPopup()">Delete</button>
   </div>
 </div>
 

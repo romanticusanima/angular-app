@@ -1,25 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { AddCoursePageComponent } from './add-course-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CoursesService } from '../../courses/courses.service';
+import { EditCoursePageComponent } from './edit-course-page.component';
 
-describe('AddCoursePageComponent', () => {
-  let component: AddCoursePageComponent;
-  let fixture: ComponentFixture<AddCoursePageComponent>;
+describe('EditCoursePageComponent', () => {
+  let component: EditCoursePageComponent;
+  let fixture: ComponentFixture<EditCoursePageComponent>;
   let coursesService: Partial<CoursesService>;
   let router: Partial<Router>;
 
   beforeEach(async(() => {
     coursesService = { 
-      createCourse: jasmine.createSpy('createCourse')//.and.returnValue([]) 
+      updateCourse: jasmine.createSpy('updateCourse')
     };
     router = { navigate: jasmine.createSpy('navigate') };
 
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [ AddCoursePageComponent ],
+      declarations: [ EditCoursePageComponent ],
       providers: [
         {provide: CoursesService, useValue: coursesService},
         {provide: Router, useValue: router}
@@ -30,7 +30,7 @@ describe('AddCoursePageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddCoursePageComponent);
+    fixture = TestBed.createComponent(EditCoursePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

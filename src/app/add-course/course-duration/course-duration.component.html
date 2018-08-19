@@ -1,5 +1,5 @@
 <div class="form-group">
   <label>Duration</label>
-  <input class="form-control" [(ngModel)]="duration" placeholder="Enter duration">
+  <input [(ngModel)]="duration" (ngModelChange)="onChange($event)" class="form-control" placeholder="Enter duration">
   <span class="ml-3">{{duration | convertDuration}}</span>
 </div>

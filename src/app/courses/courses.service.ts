@@ -7,6 +7,8 @@ export class CoursesService {
 
   constructor() { }
 
+  public course: CourseItem[];
+
   public courses: CourseItem[] = [
     {
       id: 1,
@@ -14,7 +16,8 @@ export class CoursesService {
       creationDate: new Date('03.02.2017'),
       duration: 80,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      top: true
+      top: true,
+      author: 'Nick'
     },
     {
       id: 2,
@@ -22,7 +25,8 @@ export class CoursesService {
       creationDate: new Date('07.15.2018'),
       duration: 220,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      top: true
+      top: true,
+      author: 'David'
     },
     {
       id: 3,
@@ -30,7 +34,8 @@ export class CoursesService {
       creationDate: new Date('11.05.2017'),
       duration: 45,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      top: false
+      top: false,
+      author: 'Monica'
     },
     {
       id: 4,
@@ -38,7 +43,8 @@ export class CoursesService {
       creationDate: new Date('09.17.2018'),
       duration: 110,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      top: false
+      top: false,
+      author: 'Jack'
     },
     {
       id: 5,
@@ -46,19 +52,34 @@ export class CoursesService {
       creationDate: new Date('04.05.2017'),
       duration: 120,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      top: false
+      top: false,
+      author: 'Brian'
     }
   ];
 
-  public getCourseItems() {
+  getCourseItems() {
     return this.courses;
   }
 
-  createCourse() {}
+  createCourse(data: any) {
+    data.id = this.courses.length;
+    this.courses.push(data);
+  }
 
-  getCourseById() {}
+  getCourseById(courseId: number) {
+    return this.course = this.courses.filter(course => course.id == courseId);
+  }
 
-  updateCourse() {}
+  updateCourse(courseId: number, data: any) {
+    let index = this.courses.findIndex(function(el) {
+      return el.id == courseId;
+    });
+    this.courses[index].title = data.title;
+    this.courses[index].description = data.description;
+    this.courses[index].creationDate = data.creationDate;
+    this.courses[index].duration = data.duration;
+    this.courses[index].author = data.author;
+  }
 
   removeCourse(courseId: number) {
     return this.courses = this.courses.filter(course => course.id !== courseId);

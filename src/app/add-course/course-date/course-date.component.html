@@ -1,4 +1,5 @@
 <div class="form-group">
   <label>Date</label>
-  <input class="form-control" placeholder="Enter date">
+  <input [(ngModel)]="creationDate" (ngModelChange)="onChange($event)" class="form-control" placeholder="Enter date">
+  <span class="ml-3">m/d/y</span>
 </div>

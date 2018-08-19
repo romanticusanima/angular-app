@@ -6,6 +6,7 @@ import { CourseDurationComponent } from './course-duration/course-duration.compo
 import { CourseAuthorComponent } from './course-author/course-author.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { EditCoursePageComponent } from './edit-course-page/edit-course-page.component';
 
 @NgModule({
   imports: [
@@ -17,10 +18,12 @@ import { SharedModule } from '../shared/shared.module';
     AddCoursePageComponent,
     CourseDateComponent,
     CourseDurationComponent,
-    CourseAuthorComponent
+    CourseAuthorComponent,
+    EditCoursePageComponent
   ],
   exports: [
-    AddCoursePageComponent
+    AddCoursePageComponent,
+    EditCoursePageComponent
   ]
 })
 export class AddCourseModule { }
