@@ -32,7 +32,7 @@ describe('CourseItemComponent', () => {
   });
 
   it('should open popup', () => {
-    fixture.detectChanges();
+    component.ngOnInit();
     let button = fixture.debugElement.query(By.css('.btn-open'));
     button.triggerEventHandler('click', null);
     expect(component.isOpen).toBeTruthy();
