@@ -28,6 +28,9 @@ export class AuthorizationService {
   }
 
   public isAuth() {
+    if (localStorage.getItem('currentUser')) {
+      this.isLoggedIn = true;
+    }
     return this.isLoggedIn;
   }
 }

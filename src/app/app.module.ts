@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { CoursesListModule } from './courses/courses-list.module';
 import { AddCourseModule } from './add-course/add-course.module';
+import { AuthGuard } from './shared/auth.guard';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { AddCourseModule } from './add-course/add-course.module';
     AddCourseModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [ AuthGuard ],
   bootstrap: [AppComponent]
 })
 

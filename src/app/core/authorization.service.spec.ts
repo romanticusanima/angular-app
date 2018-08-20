@@ -31,4 +31,9 @@ describe('AuthorizationService', () => {
   it('should return auth info', () => {
     expect(service.isAuth()).toEqual(false);
   });
+
+  it('should return auth info', () => {
+    service.login();
+    expect(service.isAuth()).toEqual(true);
+  });
 });
