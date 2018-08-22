@@ -1,9 +1,16 @@
 export interface CourseItem {
     id: number;
-    title: string;
-    creationDate: any;
-    duration: number;
+    name: string;
     description: string;
-    top: boolean;
-    author: string;
+    isTopRated: boolean;
+    date: any;
+    length: number;
+    //duration: number;
+    authors: [
+        {
+          id: number;
+          firstName: string;
+          lastName: string;
+        }
+    ]
 }

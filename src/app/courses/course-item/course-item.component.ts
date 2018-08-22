@@ -16,7 +16,7 @@ export class CourseItemComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit() { } 
+  ngOnInit() { }
 
   openPopup() {
     this.isOpen = true;

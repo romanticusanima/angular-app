@@ -34,11 +34,11 @@ export class EditCoursePageComponent implements OnInit {
 
   getCourseInfo() {
     this.courseData = this.coursesService.getCourseById(this.courseId);
-    this.title = this.courseData[0].title;
+    this.title = this.courseData[0].name;
     this.description = this.courseData[0].description;
-    this.creationDate = this.datePipe.transform(this.courseData[0].creationDate, 'shortDate');
-    this.duration = this.courseData[0].duration;
-    this.author = this.courseData[0].author;
+    this.creationDate = this.datePipe.transform(this.courseData[0].date, 'shortDate');
+    this.duration = this.courseData[0].length;
+    this.author = this.courseData[0].authors[0].firstName;
   }
 
   onChangeDate(value) {

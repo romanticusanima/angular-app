@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CourseItem } from '../course-item.model';
 import { CoursesService } from '../courses.service';
 import { AuthorizationService } from '../../core/authorization.service';
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-course-wrapper',
@@ -10,20 +11,24 @@ import { AuthorizationService } from '../../core/authorization.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseWrapperComponent implements OnInit {
-  public isLoggedIn: boolean = false;
+  public isLoggedIn: boolean = true;
   public courseItems: CourseItem[] = [];
   public message: string = "Currently you don't have available courses. Feel free to add new courses.";
   public searchResult: string;
+  public coursesSubscription: Subscription;
 
   constructor(private coursesService: CoursesService,
               private authorizationService: AuthorizationService) { }
 
-  receiveResult($event) {
-    this.searchResult = $event;
-  }
+  // receiveResult($event) {
+  //   this.searchResult = $event;
+  // }
 
   getCoursesList() {
-    this.courseItems = this.coursesService.getCourseItems();
+   // this.courseItems = this.coursesService.getCourseItems();
+    this.coursesService.getCourseItems().subscribe((data: CourseItem[]) => {
+      this.courseItems = data;
+    });
   }
 
   getLoginInfo() {
@@ -35,10 +40,11 @@ export class CourseWrapperComponent implements OnInit {
     if(this.isLoggedIn) {
       this.getCoursesList();
     }
+    debugger
   }
 
-  ngDoCheck() {
-    this.getCoursesList(); 
+  ngOnDestroy() {
+    this.coursesSubscription.unsubscribe();
   }
 
 }

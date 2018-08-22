@@ -1,23 +1,23 @@
-<div class="row no-gutters p-3 mb-2 rounded course" 
-    [ngClass]="{top: courseItem.top}"
-    [appCreatedDate]="courseItem.creationDate">
+<div class="row no-gutters p-3 mb-2 rounded course"
+    [ngClass]="{top: courseItem.isTopRated}"
+    [appCreatedDate]="courseItem.date">
   <div class="col-10">
     <div class="row">
-        <div class="col-7 text-primary text-truncate" [title]="courseItem.title">
-          {{courseItem?.title | uppercase}}
-          <span *ngIf="courseItem.top">
+        <div class="col-7 text-primary text-truncate" [title]="courseItem.name">
+          {{courseItem.name | uppercase}}
+          <span *ngIf="courseItem.isTopRated">
             <i class="fas fa-star"></i>
           </span>
         </div>
         <div class="col-3 text-info text-right">
-          {{courseItem?.duration | convertDuration}}
+          {{courseItem.length | convertDuration}}
         </div>
         <div class="col-2 text-info">
-          {{courseItem?.creationDate | date}}
+          {{courseItem.date | date}}
         </div>
     </div>
     <div>
-      {{courseItem?.description}}
+      {{courseItem.description}}
     </div>
   </div>
   <div class="col-2 col-buttons">
@@ -26,6 +26,6 @@
   </div>
 </div>
 
-<app-delete-popup *ngIf="isOpen" 
+<app-delete-popup *ngIf="isOpen"
                   (close)="getIsOpen($event)"
                   [courseId]="courseItem.id"></app-delete-popup>
