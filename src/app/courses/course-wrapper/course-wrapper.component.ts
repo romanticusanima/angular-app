@@ -7,8 +7,8 @@ import { Subscription } from "rxjs";
 @Component({
   selector: 'app-course-wrapper',
   templateUrl: './course-wrapper.component.html',
-  styleUrls: ['./course-wrapper.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./course-wrapper.component.css']
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseWrapperComponent implements OnInit {
   public isLoggedIn: boolean = true;
@@ -40,7 +40,7 @@ export class CourseWrapperComponent implements OnInit {
     if(this.isLoggedIn) {
       this.getCoursesList();
     }
-    debugger
+    //debugger
   }
 
   ngOnDestroy() {

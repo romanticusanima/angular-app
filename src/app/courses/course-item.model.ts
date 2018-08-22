@@ -5,7 +5,6 @@ export interface CourseItem {
     isTopRated: boolean;
     date: any;
     length: number;
-    //duration: number;
     authors: [
         {
           id: number;
