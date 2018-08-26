@@ -20,17 +20,16 @@ export class CoursesService {
     return this.http.get<CourseItem[]>(`${BASE_URL}`);
   }
 
-  getCourseItemsWithParams(textFragment: string, count: string): Observable<CourseItem[]> {
-    return this.http.get<CourseItem[]>(`${BASE_URL}`, {params: {textFragment, count}})
+  getCourseItemsWithParams(textFragment: string, start: string, count: string): Observable<CourseItem[]> {
+    return this.http.get<CourseItem[]>(`${BASE_URL}`, {params: {textFragment, start, count}})
     .pipe(
-      retry(4),
+      retry(3),
       catchError(this.handleError)
     );
   }
 
-  createCourse(data: any) {
-    data.id = this.courses.length;
-    this.courses.push(data);
+  createCourse(data: any): Observable<CourseItem> {
+    return this.http.post<CourseItem>(`${BASE_URL}`, {data});
   }
 
   getCourseById(courseId: number) {
@@ -48,8 +47,8 @@ export class CoursesService {
     this.courses[index].authors = data.author;
   }
 
-  removeCourse(courseId: number) {
-    return this.courses = this.courses.filter(course => course.id !== courseId);
+  removeCourse(courseId: string): Observable<CourseItem> {
+    return this.http.delete<CourseItem>(`${BASE_URL}/${courseId}`);
   }
 
   private handleError(error: HttpErrorResponse) {

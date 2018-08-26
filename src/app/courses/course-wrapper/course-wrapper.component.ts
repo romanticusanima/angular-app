@@ -3,6 +3,7 @@ import { CourseItem } from '../course-item.model';
 import { CoursesService } from '../courses.service';
 import { AuthorizationService } from '../../core/authorization.service';
 import { Subscription } from "rxjs";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-course-wrapper',
@@ -15,18 +16,32 @@ export class CourseWrapperComponent implements OnInit {
   public courseItems: CourseItem[] = [];
   public message: string = "Currently you don't have available courses. Feel free to add new courses.";
   public searchResult: string;
+  public start: string = '0';
+  public countToLoad: string = '10';
   public coursesSubscription: Subscription;
+  public coursesWithParamsSubscription: Subscription;
 
   constructor(private coursesService: CoursesService,
               private authorizationService: AuthorizationService) { }
 
-  // receiveResult($event) {
-  //   this.searchResult = $event;
-  // }
+  receiveResult($event) {
+    this.searchResult = $event;
+    this.search(this.searchResult);
+  }
+
+  loadMore($event) {
+    this.countToLoad = +this.countToLoad + $event;
+    this.search(this.searchResult);
+  }
 
   getCoursesList() {
-   // this.courseItems = this.coursesService.getCourseItems();
-    this.coursesService.getCourseItems().subscribe((data: CourseItem[]) => {
+    this.coursesSubscription = this.coursesService.getCourseItems().subscribe((data: CourseItem[]) => {
+      this.courseItems = data;
+    });
+  }
+
+  search(queryString: string) {
+    this.coursesWithParamsSubscription = this.coursesService.getCourseItemsWithParams(queryString, this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
       this.courseItems = data;
     });
   }
@@ -40,11 +55,11 @@ export class CourseWrapperComponent implements OnInit {
     if(this.isLoggedIn) {
       this.getCoursesList();
     }
-    //debugger
   }
 
   ngOnDestroy() {
     this.coursesSubscription.unsubscribe();
+    this.coursesWithParamsSubscription.unsubscribe();
   }
 
 }

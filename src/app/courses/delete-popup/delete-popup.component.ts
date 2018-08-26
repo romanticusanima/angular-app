@@ -7,7 +7,7 @@ import { CoursesService } from '../courses.service';
   styleUrls: ['./delete-popup.component.css']
 })
 export class DeletePopupComponent implements OnInit {
-  @Input() courseId: number;
+  @Input() courseId: string;
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   public isOpen: boolean;
 
@@ -22,8 +22,15 @@ export class DeletePopupComponent implements OnInit {
   }
 
   deleteItem() {
-   // this.searchResult = '';
-    this.coursesService.removeCourse(this.courseId);
-    this.closePopup();
+    this.coursesService.removeCourse(this.courseId).subscribe(() => {
+      this.closePopup();
+      this.coursesService.getCourseItems
+    });
   } 
+
+  public deleteUser(id: string): void {
+    // this.usersDeleteSubscription = this.usersService.deleteUser(id).subscribe(() => {
+    //   this.init();
+    // });
+  }
 }
