@@ -30,7 +30,7 @@ export class DeletePopupComponent implements OnInit {
 
   public deleteUser(id: string): void {
     // this.usersDeleteSubscription = this.usersService.deleteUser(id).subscribe(() => {
-    //   this.init();
+    //   
     // });
   }
 }

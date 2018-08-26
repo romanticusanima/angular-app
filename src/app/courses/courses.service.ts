@@ -16,11 +16,11 @@ export class CoursesService {
 
   public courses: CourseItem[];
 
-  getCourseItems(): Observable<CourseItem[]> {
-    return this.http.get<CourseItem[]>(`${BASE_URL}`);
+  getCourseItems(start: string, count: string): Observable<CourseItem[]> {
+    return this.http.get<CourseItem[]>(`${BASE_URL}`, {params: {start, count}});
   }
 
-  getCourseItemsWithParams(textFragment: string, start: string, count: string): Observable<CourseItem[]> {
+  getCourseItemsSearch(textFragment: string, start: string, count: string): Observable<CourseItem[]> {
     return this.http.get<CourseItem[]>(`${BASE_URL}`, {params: {textFragment, start, count}})
     .pipe(
       retry(3),

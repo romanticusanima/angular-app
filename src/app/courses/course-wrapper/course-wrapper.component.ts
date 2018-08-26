@@ -3,7 +3,6 @@ import { CourseItem } from '../course-item.model';
 import { CoursesService } from '../courses.service';
 import { AuthorizationService } from '../../core/authorization.service';
 import { Subscription } from "rxjs";
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-course-wrapper',
@@ -19,29 +18,34 @@ export class CourseWrapperComponent implements OnInit {
   public start: string = '0';
   public countToLoad: string = '10';
   public coursesSubscription: Subscription;
-  public coursesWithParamsSubscription: Subscription;
+  public coursesSearchSubscription: Subscription;
 
   constructor(private coursesService: CoursesService,
               private authorizationService: AuthorizationService) { }
 
   receiveResult($event) {
     this.searchResult = $event;
+    this.countToLoad = '10';
     this.search(this.searchResult);
   }
 
   loadMore($event) {
     this.countToLoad = +this.countToLoad + $event;
-    this.search(this.searchResult);
+    if (this.searchResult) {
+      this.search(this.searchResult);
+    } else {
+      this.getCoursesList();
+    }
   }
 
   getCoursesList() {
-    this.coursesSubscription = this.coursesService.getCourseItems().subscribe((data: CourseItem[]) => {
+    this.coursesSubscription = this.coursesService.getCourseItems(this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
       this.courseItems = data;
     });
   }
 
-  search(queryString: string) {
-    this.coursesWithParamsSubscription = this.coursesService.getCourseItemsWithParams(queryString, this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
+  search(queryString: string = '') {
+    this.coursesSearchSubscription = this.coursesService.getCourseItemsSearch(queryString, this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
       this.courseItems = data;
     });
   }
@@ -59,7 +63,7 @@ export class CourseWrapperComponent implements OnInit {
 
   ngOnDestroy() {
     this.coursesSubscription.unsubscribe();
-    this.coursesWithParamsSubscription.unsubscribe();
+    this.coursesSearchSubscription.unsubscribe();
   }
 
 }
