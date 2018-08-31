@@ -28,9 +28,7 @@ describe('CourseAuthorComponent', () => {
 
   it('should emit on change', () => {
     spyOn(component.onChangeAuthor, 'emit');
-    fixture.detectChanges();
-    let input = fixture.debugElement.query(By.css('input')).nativeElement;
-    input.dispatchEvent(new KeyboardEvent('keydown', {'code': '75'}));
+    component.onChange();
     expect(component.onChangeAuthor.emit).toHaveBeenCalled();
-});
+  });
 });

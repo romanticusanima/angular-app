@@ -6,8 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./course-date.component.css']
 })
 export class CourseDateComponent implements OnInit {
-  @Input() creationDate: any;
-  @Output() onChangeDate: EventEmitter<any> = new EventEmitter<any>();
+  @Input() creationDate: string;
+  @Output() onChangeDate: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 

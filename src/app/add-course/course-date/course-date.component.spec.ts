@@ -26,4 +26,10 @@ describe('CourseDateComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit on change', () => {
+    spyOn(component.onChangeDate, 'emit');
+    component.onChange();
+    expect(component.onChangeDate.emit).toHaveBeenCalled();
+  });
 });

@@ -39,9 +39,12 @@ describe('CourseItemComponent', () => {
   });
 
   it('method editCourse should redirect to /courses/id page', () => {
-    let button = fixture.debugElement.query(By.css('.btn-edit'));
-    button.triggerEventHandler('click', null);
-    fixture.detectChanges();
-    expect(router.navigate).toHaveBeenCalledWith(['/courses/new']);
+    component.editCourse(1);
+    expect(router.navigate).toHaveBeenCalledWith(['/courses', 1]);
+  });
+
+  it('should receive isOpen value', () => {
+    component.getIsOpen(true);
+    expect(component.isOpen).toEqual(true);
   });
 });
