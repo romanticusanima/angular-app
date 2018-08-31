@@ -59,8 +59,8 @@ describe('AddCoursePageComponent', () => {
   });
 
   it('should receive duration', () => {
-    component.onChangeDuration('356');
-    expect(component.duration).toEqual('356')
+    component.onChangeDuration(356);
+    expect(component.duration).toEqual(356)
   });
 
   it('should receive creationDate', () => {
