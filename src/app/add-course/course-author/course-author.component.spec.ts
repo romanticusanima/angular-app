@@ -20,6 +20,7 @@ describe('CourseAuthorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseAuthorComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

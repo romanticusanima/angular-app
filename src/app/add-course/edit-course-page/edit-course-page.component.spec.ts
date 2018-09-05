@@ -16,13 +16,23 @@ describe('EditCoursePageComponent', () => {
   beforeEach(async(() => {
     coursesService = { 
       updateCourse: jasmine.createSpy('updateCourse'),
-      getCourseById: jasmine.createSpy('getCourseById')
+      getCourseById: jasmine.createSpy('getCourseById').and.returnValue([
+        {
+          id: 1,
+          title: 'Video Course #1',
+          creationDate: new Date('03.02.2017'),
+          duration: 80,
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+          top: true,
+          author: 'Nick'
+        }
+      ])
     };
     router = { navigate: jasmine.createSpy('navigate') };
     activatedRoute = { 
       params: {
         subscribe: (fn: (value: Params) => void) => fn({
-            id: 1,
+            id: 1
         }),
       }
     }
@@ -49,18 +59,34 @@ describe('EditCoursePageComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should get course info', () => {
+    component.ngOnInit();
+    expect(coursesService.getCourseById).toHaveBeenCalled();
+  });
+
   it('should redirect back to courses', () => {
-    let button = fixture.debugElement.query(By.css('.btn-danger'));
-    button.triggerEventHandler('click', null);
-    fixture.detectChanges();
+    component.cancel();
     expect(router.navigate).toHaveBeenCalledWith(['/courses']);
   });
 
   it('should call createCourse', () => {
-    let button = fixture.debugElement.query(By.css('.btn-primary'));
-    button.triggerEventHandler('click', null);
-    fixture.detectChanges();
+    component.updateCourse();
     expect(coursesService.updateCourse).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['/courses']);
+  });
+
+  it('should receive creationDate', () => {
+    component.onChangeDate('09/02/2018');
+    expect(component.creationDate).toEqual('09/02/2018')
+  });
+
+  it('should receive duration', () => {
+    component.onChangeDuration(263);
+    expect(component.duration).toEqual(263)
+  });
+
+  it('should receive creationDate', () => {
+    component.onChangeAuthor('Tommy');
+    expect(component.author).toEqual('Tommy')
   });
 });
