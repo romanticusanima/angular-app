@@ -2,7 +2,12 @@
   <app-search (search)="receiveResult($event)"></app-search>
 
   <div *ngIf="courseItems.length > 0">
-    <app-course-item *ngFor="let item of courseItems | orderBy: 'date' " [courseItem]="item"></app-course-item>
+    <app-course-item 
+      *ngFor="let item of courseItems | orderBy: 'date' " 
+      [courseItem]="item"
+      (delete)="onDelete($event)"
+    >
+    </app-course-item>
     <app-load-more (more)="loadMore($event)"></app-load-more>
   </div>
 

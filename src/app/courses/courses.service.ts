@@ -47,7 +47,7 @@ export class CoursesService {
     this.courses[index].authors = data.author;
   }
 
-  removeCourse(courseId: string): Observable<CourseItem> {
+  removeCourse(courseId: number): Observable<CourseItem> {
     return this.http.delete<CourseItem>(`${BASE_URL}/${courseId}`);
   }
 

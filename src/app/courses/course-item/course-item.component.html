@@ -28,4 +28,5 @@
 
 <app-delete-popup *ngIf="isOpen"
                   (close)="getIsOpen($event)"
+                  (confirm)="deleteConfirm($event)"
                   [courseId]="courseItem.id"></app-delete-popup>

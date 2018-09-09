@@ -8,7 +8,6 @@ import { Subscription } from "rxjs";
   selector: 'app-course-wrapper',
   templateUrl: './course-wrapper.component.html',
   styleUrls: ['./course-wrapper.component.css']
-  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseWrapperComponent implements OnInit {
   public isLoggedIn: boolean = true;
@@ -65,5 +64,12 @@ export class CourseWrapperComponent implements OnInit {
     this.coursesSubscription.unsubscribe();
     this.coursesSearchSubscription.unsubscribe();
   }
+
+  onDelete(courseId: number) {
+    this.coursesService.removeCourse(courseId).subscribe(() => {
+      this.getCoursesList();
+    });
+  } 
+
 
 }

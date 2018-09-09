@@ -9,7 +9,9 @@ import { CoursesService } from '../courses.service';
 export class DeletePopupComponent implements OnInit {
   @Input() courseId: string;
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() confirm: EventEmitter<boolean> = new EventEmitter<boolean>();
   public isOpen: boolean;
+  public confirmDelete: boolean;
 
   constructor(private coursesService: CoursesService) { }
 
@@ -22,15 +24,7 @@ export class DeletePopupComponent implements OnInit {
   }
 
   deleteItem() {
-    this.coursesService.removeCourse(this.courseId).subscribe(() => {
-      this.closePopup();
-      this.coursesService.getCourseItems
-    });
+    this.confirmDelete = true;
+    this.confirm.emit(this.confirmDelete);
   } 
-
-  public deleteUser(id: string): void {
-    // this.usersDeleteSubscription = this.usersService.deleteUser(id).subscribe(() => {
-    //   
-    // });
-  }
 }
