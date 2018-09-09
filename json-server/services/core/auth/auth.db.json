@@ -1,6 +1,16 @@
 {
 	"users": [
   {
+    "id": 8302,
+    "fakeToken": "58ebfdf7f1f558c5c86e17f7",
+    "name": {
+      "first": "Name",
+      "last": "LastName"
+    },
+    "login": "test",
+    "password": "123"
+  },
+  {
     "id": 6093,
     "fakeToken": "58ebfdf7f1f558c5c86e17f6",
     "name": {
