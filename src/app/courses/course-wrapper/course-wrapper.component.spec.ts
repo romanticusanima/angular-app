@@ -48,4 +48,9 @@ describe('CourseWrapperComponent', () => {
     fixture.detectChanges();
     expect(authorizationService.isAuth).toHaveBeenCalled();
   });
+
+  it('should receive search value', () => {
+    component.receiveResult('match')
+    expect(component.searchResult).toEqual('match');
+  });
 });

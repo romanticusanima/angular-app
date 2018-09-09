@@ -25,4 +25,10 @@ describe('CourseDurationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit on change', () => {
+    spyOn(component.onChangeDuration, 'emit');
+    component.onChange();
+    expect(component.onChangeDuration.emit).toHaveBeenCalled();
+  });
 });

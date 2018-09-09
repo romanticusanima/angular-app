@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { AddCoursePageComponent } from './add-course-page.component';
@@ -23,7 +23,7 @@ describe('AddCoursePageComponent', () => {
         {provide: CoursesService, useValue: coursesService},
         {provide: Router, useValue: router}
       ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
@@ -51,5 +51,20 @@ describe('AddCoursePageComponent', () => {
     fixture.detectChanges();
     expect(coursesService.createCourse).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['/courses']);
+  });
+
+  it('should receive creationDate', () => {
+    component.onChangeDate('03/05/2018');
+    expect(component.creationDate).toEqual('03/05/2018')
+  });
+
+  it('should receive duration', () => {
+    component.onChangeDuration(356);
+    expect(component.duration).toEqual(356)
+  });
+
+  it('should receive creationDate', () => {
+    component.onChangeAuthor('David');
+    expect(component.author).toEqual('David')
   });
 });

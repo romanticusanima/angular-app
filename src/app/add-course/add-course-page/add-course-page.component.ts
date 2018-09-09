@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AddCoursePageComponent implements OnInit {
   public title: string;
   public description: string;
-  public creationDate: any;
+  public creationDate: string;
   public duration: number;
   public author: string;
 
