@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class EditCoursePageComponent implements OnInit {
   public courseId: number;
-  public courseData: CourseItem[];
+  public courseData;
   public title: string;
   public description: string;
   public creationDate: any;
@@ -33,12 +33,14 @@ export class EditCoursePageComponent implements OnInit {
   }
 
   getCourseInfo() {
-    this.courseData = this.coursesService.getCourseById(this.courseId);
-    this.title = this.courseData[0].name;
-    this.description = this.courseData[0].description;
-    this.creationDate = this.datePipe.transform(this.courseData[0].date, 'shortDate');
-    this.duration = this.courseData[0].length;
-    this.author = this.courseData[0].authors[0].firstName;
+    this.coursesService.getCourseById(this.courseId).subscribe((data: CourseItem) => {
+      this.courseData = data;
+      this.title = this.courseData.name;
+      this.description = this.courseData.description;
+      this.creationDate = this.datePipe.transform(this.courseData.date, 'shortDate');
+      this.duration = this.courseData.length;
+      this.author = this.courseData.authors[0].firstName;
+    });
   }
 
   onChangeDate(value) {

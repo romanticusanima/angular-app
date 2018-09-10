@@ -32,8 +32,8 @@ export class CoursesService {
     return this.http.post<CourseItem>(`${BASE_URL}`, {data});
   }
 
-  getCourseById(courseId: number) {
-    return this.course = this.courses.filter(course => course.id == courseId);
+  getCourseById(courseId: number): Observable<CourseItem> {
+    return this.http.get<CourseItem>(`${BASE_URL}/${courseId}`);
   }
 
   updateCourse(courseId: number, data: any) {

@@ -18,14 +18,39 @@ export class CourseWrapperComponent implements OnInit {
   public countToLoad: string = '10';
   public coursesSubscription: Subscription;
   public coursesSearchSubscription: Subscription;
+  public searched: boolean = false;
 
   constructor(private coursesService: CoursesService,
               private authorizationService: AuthorizationService) { }
+
+  ngOnInit() {
+    this.getLoginInfo();
+    if(this.isLoggedIn) {
+      this.getCoursesList();
+    }
+  }
+
+  getLoginInfo() {
+    this.isLoggedIn = this.authorizationService.isAuth();
+  }
+
+  getCoursesList() {
+    this.coursesSubscription = this.coursesService.getCourseItems(this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
+      this.courseItems = data;
+    });
+  }
 
   receiveResult($event) {
     this.searchResult = $event;
     this.countToLoad = '10';
     this.search(this.searchResult);
+  }
+
+  search(queryString: string = '') {
+    this.coursesSearchSubscription = this.coursesService.getCourseItemsSearch(queryString, this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
+      this.courseItems = data;
+      this.searched = true;
+    });
   }
 
   loadMore($event) {
@@ -37,39 +62,16 @@ export class CourseWrapperComponent implements OnInit {
     }
   }
 
-  getCoursesList() {
-    this.coursesSubscription = this.coursesService.getCourseItems(this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
-      this.courseItems = data;
-    });
-  }
-
-  search(queryString: string = '') {
-    this.coursesSearchSubscription = this.coursesService.getCourseItemsSearch(queryString, this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
-      this.courseItems = data;
-    });
-  }
-
-  getLoginInfo() {
-    this.isLoggedIn = this.authorizationService.isAuth();
-  }
-
-  ngOnInit() {
-    this.getLoginInfo();
-    if(this.isLoggedIn) {
-      this.getCoursesList();
-    }
-  }
-
-  ngOnDestroy() {
-    this.coursesSubscription.unsubscribe();
-    this.coursesSearchSubscription.unsubscribe();
-  }
-
   onDelete(courseId: number) {
     this.coursesService.removeCourse(courseId).subscribe(() => {
       this.getCoursesList();
     });
   } 
 
-
+  ngOnDestroy() {
+    this.coursesSubscription.unsubscribe();
+    if(this.searched) {
+      this.coursesSearchSubscription.unsubscribe();
+    }
+  }
 }
