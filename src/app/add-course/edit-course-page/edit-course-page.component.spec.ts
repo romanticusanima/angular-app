@@ -77,16 +77,16 @@ describe('EditCoursePageComponent', () => {
 
   it('should receive creationDate', () => {
     component.onChangeDate('09/02/2018');
-    expect(component.creationDate).toEqual('09/02/2018')
+    expect(component.course.date).toEqual('09/02/2018')
   });
 
   it('should receive duration', () => {
     component.onChangeDuration(263);
-    expect(component.duration).toEqual(263)
+    expect(component.course.length).toEqual(263)
   });
 
   it('should receive creationDate', () => {
     component.onChangeAuthor('Tommy');
-    expect(component.author).toEqual('Tommy')
+    expect(component.course.authors).toEqual([])
   });
 });

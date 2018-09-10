@@ -28,23 +28,16 @@ export class CoursesService {
     );
   }
 
-  createCourse(data: any): Observable<CourseItem> {
-    return this.http.post<CourseItem>(`${BASE_URL}`, {data});
+  createCourse(course: any): Observable<CourseItem> {
+    return this.http.post<CourseItem>(`${BASE_URL}`, course);
   }
 
   getCourseById(courseId: number): Observable<CourseItem> {
     return this.http.get<CourseItem>(`${BASE_URL}/${courseId}`);
   }
 
-  updateCourse(courseId: number, data: any) {
-    let index = this.courses.findIndex(function(el) {
-      return el.id == courseId;
-    });
-    this.courses[index].name = data.title;
-    this.courses[index].description = data.description;
-    this.courses[index].date = data.creationDate;
-    this.courses[index].length = data.duration;
-    this.courses[index].authors = data.author;
+  updateCourse(courseId: number, course: any) {
+    return this.http.put(`${BASE_URL}/${courseId}`, course)
   }
 
   removeCourse(courseId: number): Observable<CourseItem> {

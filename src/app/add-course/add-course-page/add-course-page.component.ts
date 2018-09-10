@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../courses/courses.service';
 import { Router } from '@angular/router';
+import { CourseItem } from '../../courses/course-item.model';
 
 @Component({
   selector: 'app-add-course-page',
@@ -8,28 +9,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-course-page.component.css']
 })
 export class AddCoursePageComponent implements OnInit {
-  public title: string;
-  public description: string;
-  public creationDate: string;
-  public duration: number;
-  public author: string;
+  course: CourseItem;
 
   constructor(private coursesService: CoursesService,
               private router: Router) { }
 
   ngOnInit() {
+    this.course = { 
+      id: Math.floor(Math.random()*1000),
+      name: '',
+      description: '',
+      isTopRated: false,
+      date: Date.now(),
+      length: 1,
+      authors: [
+          {
+            id: 1,
+            firstName: '',
+            lastName: ''
+          }
+      ]
+     }
   }
 
   onChangeDate(value) {
-    this.creationDate = value;
+    this.course.date = value;
   }
 
   onChangeDuration(value) {
-    this.duration = value
+    this.course.length = value
   }
 
   onChangeAuthor(value) {
-    this.author = value;
+    value = value.split(', ');
+    this.course.authors.forEach((val,index) => {
+      val.firstName = value[index];
+    });
   }
 
   cancel() {
@@ -37,16 +52,9 @@ export class AddCoursePageComponent implements OnInit {
   }
 
   updateCourse() {
-    let newCourse = {
-      title: this.title,
-      description: this.description,
-      creationDate: this.creationDate,
-      duration: this.duration,
-      author: this.author
-    }
-
-    this.coursesService.createCourse(newCourse);
-    this.router.navigate(['/courses']);
+    this.coursesService.createCourse(this.course).subscribe(() => {
+      this.router.navigate(['/courses']);
+    });
   }
 
 }

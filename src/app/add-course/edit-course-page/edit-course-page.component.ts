@@ -12,12 +12,9 @@ import { DatePipe } from '@angular/common';
 })
 export class EditCoursePageComponent implements OnInit {
   public courseId: number;
-  public courseData;
-  public title: string;
-  public description: string;
-  public creationDate: any;
-  public duration: number;
-  public author: string;
+  public course: CourseItem;
+
+  public authors: string;
 
   constructor(private route: ActivatedRoute,
               private coursesService: CoursesService,
@@ -34,25 +31,24 @@ export class EditCoursePageComponent implements OnInit {
 
   getCourseInfo() {
     this.coursesService.getCourseById(this.courseId).subscribe((data: CourseItem) => {
-      this.courseData = data;
-      this.title = this.courseData.name;
-      this.description = this.courseData.description;
-      this.creationDate = this.datePipe.transform(this.courseData.date, 'shortDate');
-      this.duration = this.courseData.length;
-      this.author = this.courseData.authors[0].firstName;
+      this.course = data;
+      this.authors = data.authors.map(a => a.firstName).join(', ')
     });
   }
 
   onChangeDate(value) {
-    this.creationDate = value;
+    this.course.date = value;
   }
 
   onChangeDuration(value) {
-    this.duration = value
+    this.course.length = value
   }
 
   onChangeAuthor(value) {
-    this.author = value;
+    value = value.split(', ');
+    this.course.authors.forEach((val,index) => {
+      val.firstName = value[index];
+    });
   }
 
   cancel() {
@@ -60,15 +56,8 @@ export class EditCoursePageComponent implements OnInit {
   }
 
   updateCourse() {
-    let update = {
-      title: this.title,
-      description: this.description,
-      creationDate: this.creationDate,
-      duration: this.duration,
-      author: this.author
-    }
-    this.coursesService.updateCourse(this.courseId, update);
-    this.router.navigate(['/courses']);
+    this.coursesService.updateCourse(this.courseId, this.course).subscribe(() => {
+      this.router.navigate(['/courses']);
+    });
   }
-
 }
