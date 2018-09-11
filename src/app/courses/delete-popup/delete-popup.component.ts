@@ -13,7 +13,7 @@ export class DeletePopupComponent implements OnInit {
   public isOpen: boolean;
   public confirmDelete: boolean;
 
-  constructor(private coursesService: CoursesService) { }
+  constructor() { }
 
   ngOnInit() {
   }

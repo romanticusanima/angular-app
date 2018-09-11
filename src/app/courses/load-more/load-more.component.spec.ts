@@ -22,4 +22,10 @@ describe('LoadMoreComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit on loadMoreButton', () => {
+    spyOn(component.more, 'emit');
+    component.loadMoreButton();
+    expect(component.more.emit).toHaveBeenCalled();
+  });
 });

@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { By } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { AuthorizationService } from '../authorization.service';
 
@@ -18,6 +17,7 @@ describe('LoginComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
+      imports: [FormsModule],
       providers: [
         {provide: AuthorizationService, useValue: authorizationService},
         {provide: Router, useValue: router}
@@ -36,9 +36,7 @@ describe('LoginComponent', () => {
   });
 
   it('method login should be called', () => {
-    fixture.detectChanges();
-    let button = fixture.debugElement.query(By.css('.btn-login'));
-    button.triggerEventHandler('click', null);
+    component.login();
     expect(authorizationService.login).toHaveBeenCalled();
   });
 

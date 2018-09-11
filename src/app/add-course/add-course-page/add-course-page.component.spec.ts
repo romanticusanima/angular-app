@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { AddCoursePageComponent } from './add-course-page.component';
 import { CoursesService } from '../../courses/courses.service';
-import { O_DIRECTORY } from 'constants';
 
 describe('AddCoursePageComponent', () => {
   let component: AddCoursePageComponent;
@@ -64,8 +63,8 @@ describe('AddCoursePageComponent', () => {
     expect(component.course.length).toEqual(356)
   });
 
-  it('should receive creationDate', () => {
+  it('should receive authors', () => {
     component.onChangeAuthor('David');
-    expect(component.course.authors).toEqual([])
+    expect(component.course.authors.length).toEqual(1)
   });
 });

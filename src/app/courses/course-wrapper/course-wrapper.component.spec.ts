@@ -45,7 +45,7 @@ describe('CourseWrapperComponent', () => {
   });
 
   it('should call authorization service', () => {
-    fixture.detectChanges();
+    component.getLoginInfo();
     expect(authorizationService.isAuth).toHaveBeenCalled();
   });
 

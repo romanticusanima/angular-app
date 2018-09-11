@@ -47,4 +47,10 @@ describe('CourseItemComponent', () => {
     component.getIsOpen(true);
     expect(component.isOpen).toEqual(true);
   });
+
+  it('should emit on delete course', () => {
+    spyOn(component.delete, 'emit');
+    component.deleteConfirm(true);
+    expect(component.delete.emit).toHaveBeenCalled();
+  });
 });
