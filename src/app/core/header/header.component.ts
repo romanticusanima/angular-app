@@ -8,22 +8,23 @@ import { AuthorizationService } from '../authorization.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public user: User;
+  public user;
   public isLoggedIn: boolean;
+  public isUser: boolean;
 
   constructor(private authorizationService: AuthorizationService) { }
 
   getLogin() {
     this.isLoggedIn = this.authorizationService.isAuth();
+    if(this.isLoggedIn) {
+     // const token = localStorage.getItem('userToken');
+      this.authorizationService.getUser().subscribe(
+        user => { this.user = user }
+      );
+    }
   }
 
   ngOnInit() {
-    this.user = this.authorizationService.getUser();
     this.getLogin();
   }
-
-  ngDoCheck() {      
-    this.getLogin();
-  }
-
 }

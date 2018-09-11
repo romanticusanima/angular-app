@@ -9,16 +9,19 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   public isLoggedIn: boolean = false;
+  user: any = {};
 
   constructor(private authorizationService: AuthorizationService,
               private router: Router) { }
 
   ngOnInit() {
+    this.authorizationService.logout();
   }
 
-  Login() {
-    this.isLoggedIn = this.authorizationService.login();
-    console.log("you logged in succesfully");
-    this.router.navigateByUrl('/courses');
+  login() {
+    this.authorizationService.login(this.user.name, this.user.password).subscribe(data => {
+      this.isLoggedIn = this.authorizationService.isAuth();
+      this.router.navigateByUrl('/courses');
+    });
   }
 }

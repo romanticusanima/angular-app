@@ -19,13 +19,14 @@ export class BreadcrumbsComponent implements OnInit {
   getBreabcrumbs() {
     this.router.events.subscribe((evt) => {
       this.breadcrumbs = [];
-      if (evt instanceof NavigationEnd) {
-        var url = evt.url;
-        if (url === '' || url === '/') {
-          this.breadcrumbs.length = 0;
-        } else {
-          this.breadcrumbs.push(evt.url.substr(1));
-        }
+      if (!(evt instanceof NavigationEnd)) {
+        return false;
+      }
+      const url = evt.url;
+      if (url === '' || url === '/') {
+        this.breadcrumbs.length = 0;
+      } else {
+        this.breadcrumbs.push(evt.url.substr(1));
       }
     });
   }

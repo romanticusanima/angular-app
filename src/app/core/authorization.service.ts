@@ -1,39 +1,43 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Observable, throwError} from "rxjs";
+import { catchError, retry, tap } from 'rxjs/operators';
 import { User } from './user.model';
+
+const USER_URL = 'http://localhost:3004/auth';
 
 @Injectable()
 
 export class AuthorizationService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public isLoggedIn: boolean = false;
 
-  public getUser(): User {
-    return {
-        "id": 8302,
-        "fakeToken": "58ebfdf7f1f558c5c86e17f7",
-        "name": {
-          "first": "Name",
-          "last": "LastName"
-        },
-        "login": "test",
-        "password": "123"
-      };
+  public getUser() {
+    return this.http.post(`${USER_URL}/userInfo`, { });
   }
 
-  public login() {
-    localStorage.setItem('currentUser', JSON.stringify({ token: 'fake token', name: this.getUser().name.first }));
-    return this.isLoggedIn = true;
+  public login(login: string, password: string) {
+    return this.http.post(`${USER_URL}/login`, { login, password })
+      .pipe(
+        tap((response: any) => {
+          if (response.token) {
+            localStorage.setItem('userToken', response.token);
+          }
+        }),
+        retry(1),
+        catchError(err => throwError(err))
+    );
   }
 
   public logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userToken');
     return this.isLoggedIn = false;
   }
 
   public isAuth() {
-    if (localStorage.getItem('currentUser')) {
+    if (localStorage.getItem('userToken')) {
       this.isLoggedIn = true;
     }
     return this.isLoggedIn;

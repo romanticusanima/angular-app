@@ -20,7 +20,6 @@ export class UserComponent implements OnInit {
 
   Loguot() {
     this.isLoggedIn = this.authorizationService.logout();
-    console.log("you logged out succesfully");
     this.router.navigateByUrl('/login');
   }
 
