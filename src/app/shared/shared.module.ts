@@ -5,6 +5,8 @@ import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { CreatedDateDirective } from './directives/created-date.directive';
 import { FilterPipe } from './pipes/filter.pipe';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderService } from './loader/loader.service';
 
 @NgModule({
   imports: [
@@ -14,13 +16,18 @@ import { FilterPipe } from './pipes/filter.pipe';
     FilterPipe,
     DurationPipe,
     OrderByPipe,
-    CreatedDateDirective
+    CreatedDateDirective,
+    LoaderComponent
   ],
   exports: [
     FilterPipe,
     DurationPipe,
     OrderByPipe,
-    CreatedDateDirective
+    CreatedDateDirective,
+    LoaderComponent
+  ],
+  providers: [
+    LoaderService
   ]
 })
 

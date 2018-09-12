@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit {
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
   public searchResult: string;
   public searchSubscription: Subscription;
-  public searchBox$: BehaviorSubject<string> = new BehaviorSubject('');
+  public searchBox$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public clear: boolean = false;
 
   constructor() { }

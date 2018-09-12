@@ -3,6 +3,7 @@ import { CourseItem } from '../course-item.model';
 import { CoursesService } from '../courses.service';
 import { AuthorizationService } from '../../core/authorization.service';
 import { Subscription } from "rxjs";
+import { LoaderService } from '../../shared/loader/loader.service';
 
 @Component({
   selector: 'app-course-wrapper',
@@ -21,7 +22,8 @@ export class CourseWrapperComponent implements OnInit {
   public searched: boolean = false;
 
   constructor(private coursesService: CoursesService,
-              private authorizationService: AuthorizationService) { }
+              private authorizationService: AuthorizationService,
+              private loaderService: LoaderService) { }
 
   ngOnInit() {
     this.getLoginInfo();
