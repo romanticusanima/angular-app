@@ -1,5 +1,13 @@
-.search {
+.search-container {
+    position: relative;
     width: 300px;
     display: inline-block;
     vertical-align: bottom;
+}
+
+.clear {
+    padding:11px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }

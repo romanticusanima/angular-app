@@ -1,5 +1,7 @@
 <div class="mb-2">
-  <input type="text" class="form-control search" [(ngModel)]="searchResult">
-  <button type="button" class="btn btn-primary ml-2" (click)="showResult()">Search</button>
+  <div class="search-container">
+    <input type="text" class="form-control search" [(ngModel)]="searchResult" (ngModelChange)="searchChange($event)">
+    <i *ngIf="clear" (click)="clearSearch()" class="fa fa-times clear"></i>
+  </div>
   <app-add-course-button></app-add-course-button>
 </div>

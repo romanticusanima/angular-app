@@ -28,9 +28,13 @@ describe('SearchComponent', () => {
   });
 
   it('should show correct value', () => {
-    fixture.debugElement.query(By.css('input')).nativeElement.value = 'test text';
-    fixture.debugElement.query(By.css('button')).triggerEventHandler('click', null);
-    
-    expect(fixture.debugElement.query(By.css('input')).nativeElement.value).toEqual('test text');
+    component.searchChange('test');
+    expect(component.clear).toBeTruthy();
+  });
+
+  it('should show correct value', () => {
+    component.clearSearch();
+    expect(component.clear).toBeFalsy();
+    expect(component.searchResult).toBe('');
   });
 });
