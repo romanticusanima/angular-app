@@ -2,8 +2,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CourseItem } from '../course-item.model';
 import { CoursesService } from '../courses.service';
 import { AuthorizationService } from '../../core/authorization.service';
-import { Subscription } from "rxjs";
+import { Subscription, throwError } from "rxjs";
 import { LoaderService } from '../../shared/loader/loader.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-course-wrapper',
@@ -23,7 +24,7 @@ export class CourseWrapperComponent implements OnInit {
 
   constructor(private coursesService: CoursesService,
               private authorizationService: AuthorizationService,
-              private loaderService: LoaderService) { }
+              private loader: LoaderService) { }
 
   ngOnInit() {
     this.getLoginInfo();
@@ -37,9 +38,19 @@ export class CourseWrapperComponent implements OnInit {
   }
 
   getCoursesList() {
-    this.coursesSubscription = this.coursesService.getCourseItems(this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
-      this.courseItems = data;
-    });
+    this.loader.display(true);
+    this.coursesSubscription = this.coursesService.getCourseItems(this.start, this.countToLoad)
+      .pipe(delay(300))  
+      .subscribe((data: CourseItem[]) => {
+        this.courseItems = data;
+      },
+      error => { 
+        this.loader.display(false); 
+        throwError(error);
+      },
+      () => { 
+        this.loader.display(false); 
+      });
   }
 
   receiveResult($event) {
@@ -49,10 +60,20 @@ export class CourseWrapperComponent implements OnInit {
   }
 
   search(queryString: string = '') {
-    this.coursesSearchSubscription = this.coursesService.getCourseItemsSearch(queryString, this.start, this.countToLoad).subscribe((data: CourseItem[]) => {
-      this.courseItems = data;
-      this.searched = true;
-    });
+    this.loader.display(true);
+    this.coursesSearchSubscription = this.coursesService.getCourseItemsSearch(queryString, this.start, this.countToLoad)
+      .pipe(delay(300))
+      .subscribe((data: CourseItem[]) => {
+        this.courseItems = data;
+        this.searched = true;
+      },
+      error => { 
+        this.loader.display(false); 
+        throwError(error);
+      },
+      () => { 
+        this.loader.display(false); 
+      });
   }
 
   loadMore($event) {
