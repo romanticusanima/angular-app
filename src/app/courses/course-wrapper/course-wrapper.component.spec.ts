@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CoursesService } from '../courses.service';
 import { SharedModule } from '../../shared/shared.module';
 import { AuthorizationService } from '../../core/authorization.service';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 describe('CourseWrapperComponent', () => {
   let component: CourseWrapperComponent;
@@ -23,7 +24,8 @@ describe('CourseWrapperComponent', () => {
       declarations: [ CourseWrapperComponent ],
       providers: [
         {provide: CoursesService, useValue: coursesService},
-        {provide: AuthorizationService, useValue: authorizationService}
+        {provide: AuthorizationService, useValue: authorizationService},
+        LoaderService
       ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })

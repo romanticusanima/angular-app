@@ -2,6 +2,9 @@
   <div class="login-block">
     <h2 class="login-header">Login</h2>
     <div class="login-form">
+      <div *ngIf="alert" class="alert alert-danger">
+        Login and password are incorrect
+      </div>
       <form name="form" 
             #loginForm="ngForm"
             (ngSubmit)="loginForm.form.valid && login()"

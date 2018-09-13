@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { AuthorizationService } from '../authorization.service';
+import { LoaderService } from '../../shared/loader/loader.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -20,7 +21,8 @@ describe('LoginComponent', () => {
       imports: [FormsModule],
       providers: [
         {provide: AuthorizationService, useValue: authorizationService},
-        {provide: Router, useValue: router}
+        {provide: Router, useValue: router},
+        LoaderService
       ]
     })
     .compileComponents();

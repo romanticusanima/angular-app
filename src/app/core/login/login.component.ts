@@ -11,6 +11,7 @@ import { throwError } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   public isLoggedIn: boolean = false;
+  public alert: boolean = false;
   user: any = {};
 
   constructor(private authorizationService: AuthorizationService,
@@ -30,10 +31,12 @@ export class LoginComponent implements OnInit {
       },
       error => { 
         this.loader.display(false); 
+        this.alert = true;
         throwError(error);
       },
       () => { 
         this.loader.display(false); 
+        this.alert = false;
       })
   }
 }
