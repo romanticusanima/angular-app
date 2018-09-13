@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../authorization.service';
 import { Router } from '@angular/router';
+import { LoaderService } from '../../shared/loader/loader.service';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +14,26 @@ export class LoginComponent implements OnInit {
   user: any = {};
 
   constructor(private authorizationService: AuthorizationService,
-              private router: Router) { }
+              private router: Router,
+              private loader: LoaderService) { }
 
-  ngOnInit() {
+  ngOnInit() {  
     this.authorizationService.logout();
   }
 
   login() {
-    this.authorizationService.login(this.user.name, this.user.password).subscribe(data => {
-      this.isLoggedIn = this.authorizationService.isAuth();
-      this.router.navigateByUrl('/courses');
-    });
+    this.loader.display(true);
+    this.authorizationService.login(this.user.name, this.user.password)
+      .subscribe(data => {
+        this.isLoggedIn = this.authorizationService.isAuth();
+        this.router.navigateByUrl('/courses');
+      },
+      error => { 
+        this.loader.display(false); 
+        throwError(error);
+      },
+      () => { 
+        this.loader.display(false); 
+      })
   }
 }
