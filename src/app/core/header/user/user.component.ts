@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class UserComponent implements OnInit {
   @Input() public user: User;
-  public isLoggedIn: boolean;
 
   constructor(private authorizationService: AuthorizationService, 
               private router: Router) { }
@@ -19,7 +18,7 @@ export class UserComponent implements OnInit {
   }
 
   Loguot() {
-    this.isLoggedIn = this.authorizationService.logout();
+    this.authorizationService.logout();
     this.router.navigateByUrl('/login');
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable, throwError} from "rxjs";
+import { Observable, throwError, BehaviorSubject} from "rxjs";
 import { catchError, retry, tap } from 'rxjs/operators';
 import { User } from './user.model';
 
@@ -12,10 +12,10 @@ export class AuthorizationService {
 
   constructor(private http: HttpClient) { }
 
-  public isLoggedIn: boolean = false;
+  public isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  public getUser() {
-    return this.http.post(`${USER_URL}/userInfo`, { });
+  public getUser(fakeToken) {
+    return this.http.post(`${USER_URL}/userInfo`,  fakeToken );
   }
 
   public login(login: string, password: string) {
@@ -24,6 +24,7 @@ export class AuthorizationService {
         tap((response: any) => {
           if (response.token) {
             localStorage.setItem('userToken', response.token);
+            this.isLoggedIn$.next(true);
           }
         }),
         retry(1),
@@ -33,13 +34,10 @@ export class AuthorizationService {
 
   public logout() {
     localStorage.removeItem('userToken');
-    return this.isLoggedIn = false;
+    this.isLoggedIn$.next(false);
   }
 
   public isAuth() {
-    if (localStorage.getItem('userToken')) {
-      this.isLoggedIn = true;
-    }
-    return this.isLoggedIn;
+    return this.isLoggedIn$;
   }
 }

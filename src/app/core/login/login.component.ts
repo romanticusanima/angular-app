@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../authorization.service';
 import { Router } from '@angular/router';
 import { LoaderService } from '../../shared/loader/loader.service';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { throwError } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public isLoggedIn: boolean = false;
+  public isLoggedIn: Observable<boolean>;
   public alert: boolean = false;
   user: any = {};
 
@@ -18,9 +18,7 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private loader: LoaderService) { }
 
-  ngOnInit() {  
-    this.authorizationService.logout();
-  }
+  ngOnInit() { }
 
   login() {
     this.loader.display(true);

@@ -1,4 +1,4 @@
-<ol class="breadcrumb">
+<ol *ngIf="isLoggedIn" class="breadcrumb">
   <li *ngFor="let breadcrumb of breadcrumbs">
     <span>{{breadcrumb}}</span>
   </li>

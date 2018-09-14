@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthorizationService } from '../authorization.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -7,13 +9,21 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./breadcrumbs.component.css']
 })
 export class BreadcrumbsComponent implements OnInit {
-
+  public isLoggedIn: boolean;
   public breadcrumbs: string[] = [];
+  public loggedSubscription: Subscription;
 
-  constructor (private router: Router) { }
+  constructor (private router: Router,
+               private authorizationService: AuthorizationService) { }
+
 
   ngOnInit() {
-    this.getBreabcrumbs();
+    this.loggedSubscription = this.authorizationService.isLoggedIn$.subscribe(result => {
+      this.isLoggedIn = result
+      if(this.isLoggedIn) {
+        this.getBreabcrumbs();
+      }
+    });
   }
   
   getBreabcrumbs() {
@@ -29,6 +39,10 @@ export class BreadcrumbsComponent implements OnInit {
         this.breadcrumbs.push(evt.url.substr(1));
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.loggedSubscription.unsubscribe();
   }
 
 }

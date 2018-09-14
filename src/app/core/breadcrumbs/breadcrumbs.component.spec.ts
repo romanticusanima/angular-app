@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BreadcrumbsComponent } from './breadcrumbs.component';
+import { AuthorizationService } from '../authorization.service';
 
 class MockServices {
   public url = 'http://localhost:4200';
@@ -11,6 +12,8 @@ class MockServices {
     observer.complete(); 
   });
 }
+
+let authorizationService: Partial<AuthorizationService>;
 
 describe('BreadcrumbsComponent', () => {
   let component: BreadcrumbsComponent;
@@ -22,7 +25,10 @@ describe('BreadcrumbsComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [ BreadcrumbsComponent ],
-      providers: [{provide: Router, useClass: MockServices}]
+      providers: [
+        {provide: Router, useClass: MockServices},
+        {provide: AuthorizationService, useValue: authorizationService}
+      ]
     })
     .compileComponents();
   }));

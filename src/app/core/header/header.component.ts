@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model';
 import { AuthorizationService } from '../authorization.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,20 +12,31 @@ export class HeaderComponent implements OnInit {
   public user;
   public isLoggedIn: boolean;
   public isUser: boolean;
+  public loggedSubscription: Subscription;
 
   constructor(private authorizationService: AuthorizationService) { }
 
   getLogin() {
-    this.isLoggedIn = this.authorizationService.isAuth();
-    if(this.isLoggedIn) {
-     // const token = localStorage.getItem('userToken');
-      this.authorizationService.getUser().subscribe(
-        user => { this.user = user }
-      );
-    }
+    this.loggedSubscription = this.authorizationService.isLoggedIn$.subscribe(result => {
+      this.isLoggedIn = result
+      if(this.isLoggedIn) {
+        //this.getUserInfo();
+      }
+    });
+  }
+
+  getUserInfo() {
+    const token = localStorage.getItem('userToken');
+    this.authorizationService.getUser(token).subscribe(
+      user => { this.user = user }
+    );
   }
 
   ngOnInit() {
     this.getLogin();
+  }
+
+  ngOnDestroy() {
+    this.loggedSubscription.unsubscribe();
   }
 }
