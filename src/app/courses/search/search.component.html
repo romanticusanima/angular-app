@@ -1,7 +1,12 @@
 <div class="mb-2">
-  <div class="search-container">
-    <input type="text" class="form-control search" [(ngModel)]="searchResult" (ngModelChange)="searchChange($event)">
+  <form class="search-container">
+    <input type="text" 
+            class="form-control search" 
+            placeholder="search courses"
+            [(ngModel)]="searchResult" 
+            (ngModelChange)="searchChange($event)"
+            name="searchResult">
     <i *ngIf="clear" (click)="clearSearch()" class="fa fa-times clear"></i>
-  </div>
+  </form>
   <app-add-course-button></app-add-course-button>
 </div>
