@@ -18,8 +18,8 @@ export class AuthorizationService {
     return this.http.post(`${USER_URL}/userInfo`,  fakeToken );
   }
 
-  public login(login: string, password: string) {
-    return this.http.post(`${USER_URL}/login`, { login, password })
+  public login(login) {
+    return this.http.post(`${USER_URL}/login`, login )
       .pipe(
         tap((response: any) => {
           if (response.token) {

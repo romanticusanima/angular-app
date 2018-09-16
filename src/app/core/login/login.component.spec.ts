@@ -38,7 +38,7 @@ describe('LoginComponent', () => {
   });
 
   it('method login should be called', () => {
-    component.login();
+    component.submit();
     expect(authorizationService.login).toHaveBeenCalled();
   });
 

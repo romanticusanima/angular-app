@@ -8,12 +8,13 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { AuthorizationService } from './authorization.service';
 import { LoginComponent } from './login/login.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthorizationService],
   declarations: [HeaderComponent, FooterComponent, LogoComponent, UserComponent, BreadcrumbsComponent, LoginComponent, NoPageFoundComponent],

@@ -5,32 +5,28 @@
       <div *ngIf="alert" class="alert alert-danger">
         Login and password are incorrect
       </div>
-      <form name="form" 
-            #loginForm="ngForm"
-            (ngSubmit)="loginForm.form.valid && login()"
-            novalidate>
+      <form [formGroup]="userForm" (ngSubmit)="submit()">
         <div class="form-group">
           <label for="name">Login</label>
           <input type="text" 
                  class="form-control"
-                 [(ngModel)]="user.name" 
+                 [ngClass]="{ 'is-invalid': submitted && form.login.errors }"
                  placeholder="Enter login" 
-                 name="name"
-                 #name="ngModel"
-                 required>
-          <div *ngIf="loginForm.submitted && !name.valid" class="text-error">
-            Login is required</div>
+                 formControlName="login">
+          <div *ngIf="submitted && form.login.errors" class="text-error">
+            <span *ngIf="form.login.errors.required">Login is required</span>
+          </div>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="text" class="form-control"
-                 [(ngModel)]="user.password"
-                 placeholder="Enter password" 
-                 name="password"
-                 #password="ngModel"
-                 required>
-          <div *ngIf="loginForm.submitted && !password.valid" class="text-error">
-            Password is required</div>
+          <input type="text" 
+                 class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && form.password.errors }"
+                 placeholder="Enter password"
+                 formControlName="password">
+          <div *ngIf="submitted && form.password.errors" class="text-error">
+            <span *ngIf="form.password.errors.required">Password is required</span>
+          </div>
         </div>
         <button type="submit" 
                 class="btn btn-primary btn-login">

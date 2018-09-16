@@ -3,6 +3,7 @@ import { AuthorizationService } from '../authorization.service';
 import { Router } from '@angular/router';
 import { LoaderService } from '../../shared/loader/loader.service';
 import { throwError, Observable } from 'rxjs';
+import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,12 @@ import { throwError, Observable } from 'rxjs';
 export class LoginComponent implements OnInit {
   public isLoggedIn: Observable<boolean>;
   public alert: boolean = false;
-  user: any = {};
+  public submitted: boolean = false;
+  
+  userForm = new FormGroup({
+    login: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  });
 
   constructor(private authorizationService: AuthorizationService,
               private router: Router,
@@ -20,9 +26,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { }
 
-  login() {
+  get form() { return this.userForm.controls }
+
+  submit() {
+    this.submitted = true;
+    if (this.userForm.invalid) {
+      return;
+    }
     this.loader.display(true);
-    this.authorizationService.login(this.user.name, this.user.password)
+    this.authorizationService.login(this.userForm.value)
       .subscribe(data => {
         this.isLoggedIn = this.authorizationService.isAuth();
         this.router.navigateByUrl('/courses');
