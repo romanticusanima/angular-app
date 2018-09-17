@@ -18,22 +18,18 @@ export class AuthorizationService {
     return this.http.post(`${USER_URL}/userInfo`,  fakeToken );
   }
 
-  public login(login) {
-    return this.http.post(`${USER_URL}/login`, login )
+  public login(login, password) {
+    return this.http.post(`${USER_URL}/login`, {login, password} )
       .pipe(
         tap((response: any) => {
           if (response.token) {
-            localStorage.setItem('userToken', response.token);
             this.isLoggedIn$.next(true);
           }
-        }),
-        retry(1),
-        catchError(err => throwError(err))
-    );
+        })
+      );
   }
 
   public logout() {
-    localStorage.removeItem('userToken');
     this.isLoggedIn$.next(false);
   }
 

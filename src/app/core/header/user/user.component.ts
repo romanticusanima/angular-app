@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../user.model';
-import { AuthorizationService } from '../../authorization.service';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/app.states';
+import { LogOut } from '../../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-user',
@@ -11,15 +12,13 @@ import { Router } from '@angular/router';
 export class UserComponent implements OnInit {
   @Input() public user: User;
 
-  constructor(private authorizationService: AuthorizationService, 
-              private router: Router) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
   }
 
   Loguot() {
-    this.authorizationService.logout();
-    this.router.navigateByUrl('/login');
+    this.store.dispatch(new LogOut);
   }
 
 }

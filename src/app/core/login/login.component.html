@@ -2,10 +2,10 @@
   <div class="login-block">
     <h2 class="login-header">Login</h2>
     <div class="login-form">
-      <div *ngIf="alert" class="alert alert-danger">
-        Login and password are incorrect
+      <div *ngIf="errors" class="alert alert-danger">
+        {{errors}}
       </div>
-      <form [formGroup]="userForm" (ngSubmit)="submit()">
+      <form [formGroup]="userForm" (ngSubmit)="submit()" ngNativeValidate>
         <div class="form-group">
           <label for="name">Login</label>
           <input type="text" 

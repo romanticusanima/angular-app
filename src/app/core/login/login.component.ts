@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorizationService } from '../authorization.service';
-import { Router } from '@angular/router';
-import { LoaderService } from '../../shared/loader/loader.service';
-import { throwError, Observable } from 'rxjs';
-import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState, selectAuthState } from '../../store/app.states';
+import { LogIn } from '../../store/actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +11,9 @@ import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/f
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public getState: Observable<any>;
   public isLoggedIn: Observable<boolean>;
-  public alert: boolean = false;
+  public errors: string;
   public submitted: boolean = false;
   
   userForm = new FormGroup({
@@ -20,11 +21,16 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
-  constructor(private authorizationService: AuthorizationService,
-              private router: Router,
-              private loader: LoaderService) { }
+  constructor(private store: Store<AppState>) {
+                this.getState = this.store.select(selectAuthState);
+              }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getState.subscribe((state) => {
+      this.isLoggedIn = state.isLoggedIn;
+      this.errors = state.errorMessage;
+    });
+  }
 
   get form() { return this.userForm.controls }
 
@@ -33,20 +39,6 @@ export class LoginComponent implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    this.loader.display(true);
-    this.authorizationService.login(this.userForm.value)
-      .subscribe(data => {
-        this.isLoggedIn = this.authorizationService.isAuth();
-        this.router.navigateByUrl('/courses');
-      },
-      error => { 
-        this.loader.display(false); 
-        this.alert = true;
-        throwError(error);
-      },
-      () => { 
-        this.loader.display(false); 
-        this.alert = false;
-      })
+    this.store.dispatch(new LogIn(this.userForm.value));
   }
 }
