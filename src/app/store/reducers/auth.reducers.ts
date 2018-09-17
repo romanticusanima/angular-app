@@ -39,3 +39,5 @@ export function reducer(state = initialState, action: All): State {
         }
     }
 }
+
+export const getLoggedIn = (state: State) => state.isLoggedIn;
