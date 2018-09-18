@@ -4,14 +4,16 @@ import { AddCoursePageComponent } from './add-course-page/add-course-page.compon
 import { CourseDateComponent } from './course-date/course-date.component';
 import { CourseDurationComponent } from './course-duration/course-duration.component';
 import { CourseAuthorComponent } from './course-author/course-author.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { EditCoursePageComponent } from './edit-course-page/edit-course-page.component';
+import { CustomInputComponent } from './custom-input/custom-input.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule
   ],
   declarations: [
@@ -19,7 +21,8 @@ import { EditCoursePageComponent } from './edit-course-page/edit-course-page.com
     CourseDateComponent,
     CourseDurationComponent,
     CourseAuthorComponent,
-    EditCoursePageComponent
+    EditCoursePageComponent,
+    CustomInputComponent
   ],
   exports: [
     AddCoursePageComponent,

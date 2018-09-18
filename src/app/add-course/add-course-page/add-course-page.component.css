@@ -1,0 +1,9 @@
+.form-width {
+    display: inline-block;
+    width: 200px;
+}
+
+.text-error {
+    color: #dc3545;;
+    padding: 5px 10px;
+}

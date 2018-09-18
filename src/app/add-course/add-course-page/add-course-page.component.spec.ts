@@ -53,18 +53,18 @@ describe('AddCoursePageComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/courses']);
   });
 
-  it('should receive creationDate', () => {
-    component.onChangeDate('03/05/2018');
-    expect(component.course.date).toEqual('03/05/2018')
-  });
+  // it('should receive creationDate', () => {
+  //   component.onChangeDate('03/05/2018');
+  //   expect(component.course.date).toEqual('03/05/2018')
+  // });
 
-  it('should receive duration', () => {
-    component.onChangeDuration(356);
-    expect(component.course.length).toEqual(356)
-  });
+  // it('should receive duration', () => {
+  //   component.onChangeDuration(356);
+  //   expect(component.course.length).toEqual(356)
+  // });
 
-  it('should receive authors', () => {
-    component.onChangeAuthor('David');
-    expect(component.course.authors.length).toEqual(1)
-  });
+  // it('should receive authors', () => {
+  //   component.onChangeAuthor('David');
+  //   expect(component.course.authors.length).toEqual(1)
+  // });
 });

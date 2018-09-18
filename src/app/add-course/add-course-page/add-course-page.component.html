@@ -1,18 +1,60 @@
 <div class="mt-3" *ngIf="course">
-  <div class="form-group">
-    <label>Title</label>
-    <input [(ngModel)]="course.name" class="form-control" placeholder="Enter name">
-  </div>
-  <div class="form-group">
-    <label>Description</label>
-    <textarea [(ngModel)]="course.description" class="form-control" rows="3"></textarea>
-  </div>
-  <app-course-date [creationDate]="course.date | date: 'shortDate'" (onChangeDate)="onChangeDate($event)"></app-course-date>
-  <app-course-duration [duration]="course.length" (onChangeDuration)="onChangeDuration($event)"></app-course-duration>
-  <app-course-author [author]="authors" (onChangeAuthor)="onChangeAuthor($event)"></app-course-author>
+  <form [formGroup]="courseForm">
+    <div class="form-group">
+      <label>Title</label>
+        <div *ngIf="form.name.touched && form.name.errors" class="text-error">
+          <span *ngIf="form.name.errors.required">Title is required</span>
+          <span *ngIf="form.name.errors.maxlength">Title should be no longer than 50 symbols</span>
+        </div>
+        <input class="form-control" 
+              placeholder="Enter name"
+              formControlName="name"
+              [ngClass]="{ 'is-invalid': form.name.touched && form.name.errors }">
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+        <div *ngIf="form.description.touched && form.description.errors" class="text-error">
+          <span *ngIf="form.description.errors.required">Description is required</span>
+          <span *ngIf="form.description.errors.maxlength">Description should be no longer than 500 symbols</span>
+        </div>
+        <textarea class="form-control" 
+                  placeholder="Enter description"
+                  rows="3"
+                  formControlName="description"
+                  [ngClass]="{ 'is-invalid': form.description.touched && form.description.errors }">
+        </textarea>
+    </div>
+    <div class="form-group">
+      <div class="form-width">
+        <label>Date</label>
+        <div *ngIf="form.date.touched && form.date.errors" class="text-error">
+          <span *ngIf="form.date.errors.required">Authors is required</span>
+        </div>
+        <app-custom-input formControlName="date"></app-custom-input>
+      </div>
+      <span class="text-black-50"> d/m/y</span>
+    </div>
+    <div class="form-group">
+      <div class="form-width">
+        <label>Duration</label>
+        <div *ngIf="form.length.touched && form.length.errors" class="text-error">
+          <span *ngIf="form.length.errors.required">Authors is required</span>
+        </div>
+        <app-custom-input formControlName="length"></app-custom-input>
+      </div>
+      <span class="text-black-50"> min</span>
+    </div>
+    <div class="form-group">
+        <label>Authors</label>
+        <div *ngIf="form.authors.touched && form.authors.errors" class="text-error">
+          <span *ngIf="form.authors.errors.required">Authors is required</span>
+        </div>
+        <app-custom-input formControlName="authors"></app-custom-input>
+    </div>
 
-  <div class="mt-2 float-right">
-    <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
-    <button type="submit" class="btn btn-primary ml-3" (click)="updateCourse()">Save</button>
-  </div>
+    <div class="mt-2 float-right">
+      <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+      <button type="submit" class="btn btn-primary ml-3" (click)="updateCourse()" [disabled]="courseForm.invalid">Save</button>
+    </div>
+  </form>
 </div>

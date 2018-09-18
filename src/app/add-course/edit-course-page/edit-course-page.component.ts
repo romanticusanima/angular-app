@@ -6,7 +6,7 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-edit-course-page',
-  templateUrl: '../add-course-page/add-course-page.component.html',
+  templateUrl: './edit-course-page.component.html',
   styleUrls: ['./edit-course-page.component.css'],
   providers: [DatePipe]
 })
