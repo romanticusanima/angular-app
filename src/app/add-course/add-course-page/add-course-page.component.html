@@ -27,8 +27,8 @@
     <div class="form-group">
       <div class="form-width">
         <label>Date</label>
-        <div *ngIf="form.date.touched && form.date.errors" class="text-error">
-          <span *ngIf="form.date.errors.required">Authors is required</span>
+        <div *ngIf="form.date.invalid" class="text-error">
+          <span *ngIf="form.date.errors.required">Date is required</span>
         </div>
         <app-custom-input formControlName="date"></app-custom-input>
       </div>
@@ -37,8 +37,8 @@
     <div class="form-group">
       <div class="form-width">
         <label>Duration</label>
-        <div *ngIf="form.length.touched && form.length.errors" class="text-error">
-          <span *ngIf="form.length.errors.required">Authors is required</span>
+        <div *ngIf="form.length.invalid" class="text-error">
+          <span *ngIf="form.length.errors.required">Duration is required</span>
         </div>
         <app-custom-input formControlName="length"></app-custom-input>
       </div>

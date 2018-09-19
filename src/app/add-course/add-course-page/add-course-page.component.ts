@@ -48,12 +48,16 @@ export class AddCoursePageComponent implements OnInit {
      }
   }
 
-  // onChangeAuthor(value) {
-  //   value = value.split(', ');
-  //   this.course.authors.forEach((val,index) => {
-  //     val.firstName = value[index];
-  //   });
-  // }
+  changeAuthor(value) {
+    value = value.split(', ');
+    value.forEach((val, index) => {
+      this.course.authors.push({
+        id: 0,
+        firstName: val,
+        lastName: ''
+      })
+    });
+  }
 
   cancel() {
     this.router.navigate(['/courses']);
@@ -65,7 +69,7 @@ export class AddCoursePageComponent implements OnInit {
     let date = this.courseForm.value.date.split("/");
     this.course.date = new Date(date[2], date[1] - 1, date[0]);
     this.course.length = this.courseForm.value.length;
-    this.course.authors[0].firstName = this.courseForm.value.authors;
+    this.changeAuthor(this.courseForm.value.authors);
     this.coursesService.createCourse(this.course).subscribe(() => {
       this.router.navigate(['/courses']);
     });

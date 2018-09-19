@@ -12,10 +12,6 @@ export class CoursesService {
 
   constructor(private http: HttpClient) { }
 
-  public course: CourseItem[];
-
-  public courses: CourseItem[];
-
   getCourseItems(start: string, count: string): Observable<CourseItem[]> {
     return this.http.get<CourseItem[]>(`${BASE_URL}`, {params: {start, count}});
   }
