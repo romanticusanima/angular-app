@@ -74,19 +74,4 @@ describe('EditCoursePageComponent', () => {
     expect(coursesService.updateCourse).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['/courses']);
   });
-
-  it('should receive creationDate', () => {
-    component.onChangeDate('09/02/2018');
-    expect(component.course.date).toEqual('09/02/2018')
-  });
-
-  it('should receive duration', () => {
-    component.onChangeDuration(263);
-    expect(component.course.length).toEqual(263)
-  });
-
-  it('should receive creationDate', () => {
-    component.onChangeAuthor('Tommy');
-    expect(component.course.authors).toEqual([])
-  });
 });
